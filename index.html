@@ -1,0 +1,2030 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Premium Black & White Website</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ==================== RESET & VARIABLES ==================== */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --black: #000000;
+        --white: #ffffff;
+        --gray-100: #f5f5f5;
+        --gray-200: #e5e5e5;
+        --gray-300: #d4d4d4;
+        --gray-400: #a3a3a3;
+        --gray-500: #737373;
+        --gray-600: #525252;
+        --gray-700: #404040;
+        --gray-800: #262626;
+        --gray-900: #171717;
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      body {
+        font-family: "Work Sans", sans-serif;
+        background: var(--white);
+        color: var(--black);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* ==================== TYPOGRAPHY ==================== */
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Playfair Display", serif;
+        font-weight: 900;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+      }
+
+      h1 {
+        font-size: clamp(2.5rem, 8vw, 6rem);
+      }
+      h2 {
+        font-size: clamp(2rem, 5vw, 4rem);
+      }
+      h3 {
+        font-size: clamp(1.5rem, 3vw, 2.5rem);
+      }
+      h4 {
+        font-size: clamp(1.25rem, 2vw, 1.75rem);
+      }
+
+      /* ==================== PAGE NAVIGATION SYSTEM ==================== */
+      .page {
+        display: none;
+        min-height: 100vh;
+      }
+
+      #home:target ~ #page-home,
+      #products:target ~ #page-products,
+      #faq:target ~ #page-faq,
+      #profile:target ~ #page-profile,
+      #recovery:target ~ #page-recovery,
+      #admin:target ~ #page-admin,
+      #bundles:target ~ #page-bundles {
+        display: block;
+      }
+
+      /* Default to home page */
+      #page-home {
+        display: block;
+      }
+
+      #home:target ~ #page-home,
+      #products:target ~ #page-home,
+      #faq:target ~ #page-home,
+      #profile:target ~ #page-home,
+      #recovery:target ~ #page-home,
+      #admin:target ~ #page-home,
+      #bundles:target ~ #page-home {
+        display: none;
+      }
+
+      /* ==================== NAVIGATION BAR ==================== */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background: var(--white);
+        border-bottom: 2px solid var(--black);
+        padding: 1.5rem 3rem;
+      }
+
+      nav .nav-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      nav .logo {
+        font-family: "Playfair Display", serif;
+        font-size: 1.75rem;
+        font-weight: 900;
+        color: var(--black);
+        text-decoration: none;
+        letter-spacing: -0.02em;
+      }
+
+      nav .nav-links {
+        display: flex;
+        gap: 3rem;
+        list-style: none;
+      }
+
+      nav .nav-links a {
+        color: var(--black);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.95rem;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        position: relative;
+        transition: var(--transition);
+      }
+
+      nav .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: -5px;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: var(--black);
+        transition: var(--transition);
+      }
+
+      nav .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* ==================== BUTTONS ==================== */
+      .btn {
+        display: inline-block;
+        padding: 1rem 2.5rem;
+        background: var(--black);
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        border: 2px solid var(--black);
+        cursor: pointer;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: var(--white);
+        transition: var(--transition);
+        z-index: 0;
+      }
+
+      .btn:hover::before {
+        left: 0;
+      }
+
+      .btn:hover {
+        color: var(--black);
+      }
+
+      .btn span {
+        position: relative;
+        z-index: 1;
+      }
+
+      .btn-outline {
+        background: var(--white);
+        color: var(--black);
+      }
+
+      .btn-outline::before {
+        background: var(--black);
+      }
+
+      .btn-outline:hover {
+        color: var(--white);
+      }
+
+      /* ==================== FOOTER ==================== */
+      footer {
+        background: var(--black);
+        color: var(--white);
+        padding: 4rem 3rem 2rem;
+        margin-top: 8rem;
+      }
+
+      footer .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 3rem;
+        margin-bottom: 3rem;
+      }
+
+      footer h4 {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+
+      footer .social-links {
+        display: flex;
+        gap: 1.5rem;
+        list-style: none;
+      }
+
+      footer .social-links a {
+        color: var(--white);
+        text-decoration: none;
+        font-size: 1.5rem;
+        transition: var(--transition);
+      }
+
+      footer .social-links a:hover {
+        color: var(--gray-400);
+        transform: translateY(-3px);
+      }
+
+      footer .footer-bottom {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid var(--gray-700);
+        color: var(--gray-400);
+        font-size: 0.9rem;
+      }
+
+      /* ==================== HOME PAGE ==================== */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8rem 3rem 4rem;
+        background: linear-gradient(
+          135deg,
+          var(--white) 0%,
+          var(--gray-100) 100%
+        );
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 100%;
+        height: 200%;
+        background: repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 10px,
+          var(--gray-200) 10px,
+          var(--gray-200) 11px
+        );
+        opacity: 0.3;
+        animation: slide 20s linear infinite;
+      }
+
+      @keyframes slide {
+        0% {
+          transform: translateX(0) translateY(0);
+        }
+        100% {
+          transform: translateX(-50px) translateY(-50px);
+        }
+      }
+
+      .hero-content {
+        text-align: center;
+        max-width: 900px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero h1 {
+        margin-bottom: 1.5rem;
+        animation: fadeInUp 0.8s ease-out;
+      }
+
+      .hero p {
+        font-size: 1.25rem;
+        color: var(--gray-600);
+        margin-bottom: 3rem;
+        animation: fadeInUp 0.8s ease-out 0.2s backwards;
+      }
+
+      .hero .btn {
+        animation: fadeInUp 0.8s ease-out 0.4s backwards;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .features {
+        padding: 8rem 3rem;
+        background: var(--white);
+      }
+
+      .features-container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .features h2 {
+        text-align: center;
+        margin-bottom: 5rem;
+      }
+
+      .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+      }
+
+      .feature-card {
+        padding: 3rem;
+        border: 2px solid var(--gray-200);
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .feature-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background: var(--black);
+        transition: var(--transition);
+        z-index: 0;
+      }
+
+      .feature-card:hover::before {
+        width: 100%;
+      }
+
+      .feature-card:hover {
+        border-color: var(--black);
+        transform: translateY(-5px);
+      }
+
+      .feature-card > * {
+        position: relative;
+        z-index: 1;
+        transition: var(--transition);
+      }
+
+      .feature-card:hover h3,
+      .feature-card:hover p {
+        color: var(--white);
+      }
+
+      .feature-card h3 {
+        margin-bottom: 1rem;
+        font-size: 1.75rem;
+      }
+
+      .feature-card p {
+        color: var(--gray-600);
+        line-height: 1.8;
+      }
+
+      /* ==================== PRODUCTS PAGE ==================== */
+      .products-page {
+        padding: 8rem 3rem 4rem;
+        background: var(--gray-100);
+      }
+
+      .products-container {
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+
+      .products-page h1 {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2.5rem;
+      }
+
+      .product-card {
+        background: var(--white);
+        border: 2px solid var(--black);
+        overflow: hidden;
+        transition: var(--transition);
+        position: relative;
+      }
+
+      .product-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: var(--transition);
+      }
+
+      .product-card:hover::after {
+        left: 100%;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 280px;
+        background: linear-gradient(
+          135deg,
+          var(--gray-900) 0%,
+          var(--gray-700) 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        color: var(--white);
+        font-family: "Playfair Display", serif;
+        border-bottom: 2px solid var(--black);
+      }
+
+      .product-info {
+        padding: 2rem;
+      }
+
+      .product-info h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .product-info p {
+        color: var(--gray-600);
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+      }
+
+      .product-price {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        font-family: "Playfair Display", serif;
+      }
+
+      .product-info .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      /* ==================== FAQ PAGE ==================== */
+      .faq-page {
+        padding: 8rem 3rem 4rem;
+        background: var(--white);
+      }
+
+      .faq-container {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .faq-page h1 {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .faq-item {
+        margin-bottom: 1.5rem;
+        border: 2px solid var(--gray-200);
+        transition: var(--transition);
+      }
+
+      .faq-item:hover {
+        border-color: var(--black);
+      }
+
+      .faq-question {
+        position: relative;
+      }
+
+      .faq-question input[type="checkbox"] {
+        position: absolute;
+        opacity: 0;
+        pointer-events: none;
+      }
+
+      .faq-question label {
+        display: block;
+        padding: 2rem;
+        font-weight: 600;
+        font-size: 1.15rem;
+        cursor: pointer;
+        position: relative;
+        padding-right: 4rem;
+        transition: var(--transition);
+      }
+
+      .faq-question label::after {
+        content: "+";
+        position: absolute;
+        right: 2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 2rem;
+        line-height: 1;
+        transition: var(--transition);
+      }
+
+      .faq-question input[type="checkbox"]:checked + label {
+        background: var(--black);
+        color: var(--white);
+      }
+
+      .faq-question input[type="checkbox"]:checked + label::after {
+        content: "−";
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .faq-question input[type="checkbox"]:checked ~ .faq-answer {
+        max-height: 500px;
+      }
+
+      .faq-answer-content {
+        padding: 2rem;
+        color: var(--gray-600);
+        line-height: 1.8;
+        border-top: 1px solid var(--gray-200);
+      }
+
+      /* ==================== PROFILE PAGE ==================== */
+      .profile-page {
+        padding: 8rem 3rem 4rem;
+        background: var(--gray-100);
+      }
+
+      .profile-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 3rem;
+      }
+
+      .profile-sidebar {
+        background: var(--white);
+        padding: 3rem;
+        border: 2px solid var(--black);
+        height: fit-content;
+      }
+
+      .profile-avatar {
+        width: 150px;
+        height: 150px;
+        background: var(--black);
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        font-family: "Playfair Display", serif;
+        margin: 0 auto 2rem;
+        border: 3px solid var(--gray-200);
+      }
+
+      .profile-info h2 {
+        font-size: 2rem;
+        text-align: center;
+        margin-bottom: 0.5rem;
+      }
+
+      .profile-info p {
+        text-align: center;
+        color: var(--gray-600);
+        margin-bottom: 2rem;
+      }
+
+      .profile-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .profile-main {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+
+      .profile-section {
+        background: var(--white);
+        padding: 3rem;
+        border: 2px solid var(--black);
+      }
+
+      .profile-section h3 {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--gray-200);
+      }
+
+      .purchase-item {
+        padding: 1.5rem;
+        border: 1px solid var(--gray-200);
+        margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: var(--transition);
+      }
+
+      .purchase-item:hover {
+        border-color: var(--black);
+        background: var(--gray-100);
+      }
+
+      .purchase-details h4 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .purchase-details p {
+        color: var(--gray-600);
+        font-size: 0.9rem;
+      }
+
+      .purchase-price {
+        font-size: 1.5rem;
+        font-weight: 700;
+        font-family: "Playfair Display", serif;
+      }
+
+      /* ==================== PASSWORD RECOVERY PAGE ==================== */
+      .recovery-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8rem 3rem 4rem;
+        background: linear-gradient(
+          135deg,
+          var(--gray-100) 0%,
+          var(--white) 100%
+        );
+      }
+
+      .recovery-form {
+        background: var(--white);
+        padding: 4rem;
+        border: 3px solid var(--black);
+        max-width: 500px;
+        width: 100%;
+        box-shadow: 20px 20px 0 var(--black);
+      }
+
+      .recovery-form h2 {
+        text-align: center;
+        margin-bottom: 1rem;
+      }
+
+      .recovery-form p {
+        text-align: center;
+        color: var(--gray-600);
+        margin-bottom: 3rem;
+      }
+
+      .form-group {
+        margin-bottom: 2rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 1rem;
+        border: 2px solid var(--gray-300);
+        font-family: "Work Sans", sans-serif;
+        font-size: 1rem;
+        transition: var(--transition);
+        background: var(--white);
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--black);
+      }
+
+      .recovery-form .btn {
+        width: 100%;
+      }
+
+      .recovery-form .back-link {
+        text-align: center;
+        margin-top: 2rem;
+      }
+
+      .recovery-form .back-link a {
+        color: var(--gray-600);
+        text-decoration: none;
+        font-size: 0.9rem;
+        transition: var(--transition);
+      }
+
+      .recovery-form .back-link a:hover {
+        color: var(--black);
+      }
+
+      /* ==================== ADMIN PANEL ==================== */
+      .admin-page {
+        padding-top: 5rem;
+        display: flex;
+        min-height: 100vh;
+      }
+
+      .admin-sidebar {
+        width: 280px;
+        background: var(--black);
+        color: var(--white);
+        padding: 3rem 0;
+        position: fixed;
+        height: 100vh;
+        top: 0;
+        left: 0;
+      }
+
+      .admin-sidebar h2 {
+        padding: 0 2rem 2rem;
+        border-bottom: 2px solid var(--gray-700);
+        margin-bottom: 2rem;
+        font-size: 1.5rem;
+      }
+
+      .admin-nav {
+        list-style: none;
+      }
+
+      .admin-nav a {
+        display: block;
+        padding: 1.25rem 2rem;
+        color: var(--white);
+        text-decoration: none;
+        transition: var(--transition);
+        border-left: 3px solid transparent;
+        font-weight: 500;
+      }
+
+      .admin-nav a:hover {
+        background: var(--gray-900);
+        border-left-color: var(--white);
+      }
+
+      .admin-content {
+        margin-left: 280px;
+        flex: 1;
+        padding: 4rem;
+        background: var(--gray-100);
+      }
+
+      .admin-header {
+        margin-bottom: 3rem;
+      }
+
+      .admin-header h1 {
+        margin-bottom: 0.5rem;
+      }
+
+      .admin-header p {
+        color: var(--gray-600);
+      }
+
+      .admin-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .admin-card {
+        background: var(--white);
+        padding: 2.5rem;
+        border: 2px solid var(--black);
+        transition: var(--transition);
+      }
+
+      .admin-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .admin-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .admin-card .stat {
+        font-size: 3rem;
+        font-weight: 900;
+        font-family: "Playfair Display", serif;
+        color: var(--black);
+      }
+
+      .admin-table-container {
+        background: var(--white);
+        padding: 2.5rem;
+        border: 2px solid var(--black);
+        margin-bottom: 2rem;
+      }
+
+      .admin-table-container h3 {
+        margin-bottom: 2rem;
+        padding-bottom: 1rem;
+        border-bottom: 2px solid var(--gray-200);
+      }
+
+      .admin-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .admin-table thead {
+        background: var(--black);
+        color: var(--white);
+      }
+
+      .admin-table th {
+        padding: 1.25rem;
+        text-align: left;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        letter-spacing: 0.05em;
+      }
+
+      .admin-table td {
+        padding: 1.25rem;
+        border-bottom: 1px solid var(--gray-200);
+      }
+
+      .admin-table tbody tr {
+        transition: var(--transition);
+      }
+
+      .admin-table tbody tr:hover {
+        background: var(--gray-100);
+      }
+
+      .admin-form {
+        background: var(--white);
+        padding: 2.5rem;
+        border: 2px solid var(--black);
+      }
+
+      .admin-form h3 {
+        margin-bottom: 2rem;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+      }
+
+      /* ==================== YOUTUBER BUNDLES PAGE ==================== */
+      .bundles-page {
+        padding: 8rem 3rem 4rem;
+        background: var(--white);
+      }
+
+      .bundles-hero {
+        text-align: center;
+        max-width: 900px;
+        margin: 0 auto 6rem;
+      }
+
+      .bundles-hero h1 {
+        margin-bottom: 1.5rem;
+      }
+
+      .bundles-hero p {
+        font-size: 1.25rem;
+        color: var(--gray-600);
+        margin-bottom: 3rem;
+      }
+
+      .creators-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 3rem;
+        max-width: 1400px;
+        margin: 0 auto 6rem;
+      }
+
+      .creator-card {
+        background: var(--gray-100);
+        border: 3px solid var(--black);
+        padding: 3rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: var(--transition);
+      }
+
+      .creator-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: var(--black);
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: var(--transition);
+      }
+
+      .creator-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .creator-card:hover {
+        transform: translateY(-10px);
+      }
+
+      .creator-avatar {
+        width: 120px;
+        height: 120px;
+        background: var(--black);
+        color: var(--white);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        font-family: "Playfair Display", serif;
+        margin: 0 auto 1.5rem;
+      }
+
+      .creator-card h3 {
+        margin-bottom: 0.5rem;
+      }
+
+      .creator-card p {
+        color: var(--gray-600);
+        margin-bottom: 2rem;
+      }
+
+      .comparison-section {
+        max-width: 1200px;
+        margin: 0 auto 6rem;
+      }
+
+      .comparison-section h2 {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .comparison-table {
+        background: var(--white);
+        border: 3px solid var(--black);
+        overflow: hidden;
+      }
+
+      .comparison-table table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .comparison-table thead {
+        background: var(--black);
+        color: var(--white);
+      }
+
+      .comparison-table th {
+        padding: 2rem 1.5rem;
+        text-align: left;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      .comparison-table td {
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--gray-200);
+      }
+
+      .comparison-table tbody tr:nth-child(even) {
+        background: var(--gray-100);
+      }
+
+      .testimonials-section {
+        max-width: 1000px;
+        margin: 0 auto 6rem;
+      }
+
+      .testimonials-section h2 {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .testimonial {
+        background: var(--gray-100);
+        padding: 3rem;
+        border-left: 5px solid var(--black);
+        margin-bottom: 2rem;
+      }
+
+      .testimonial p {
+        font-size: 1.25rem;
+        font-style: italic;
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+      }
+
+      .testimonial-author {
+        font-weight: 600;
+        font-size: 1rem;
+      }
+
+      .cta-section {
+        text-align: center;
+        padding: 6rem 3rem;
+        background: var(--black);
+        color: var(--white);
+        margin: 0 -3rem;
+      }
+
+      .cta-section h2 {
+        margin-bottom: 2rem;
+      }
+
+      .cta-section p {
+        font-size: 1.25rem;
+        margin-bottom: 3rem;
+        color: var(--gray-400);
+      }
+
+      .cta-section .btn {
+        background: var(--white);
+        color: var(--black);
+        border-color: var(--white);
+      }
+
+      .cta-section .btn::before {
+        background: var(--black);
+      }
+
+      .cta-section .btn:hover {
+        color: var(--white);
+      }
+
+      /* ==================== RESPONSIVE DESIGN ==================== */
+      @media (max-width: 968px) {
+        nav {
+          padding: 1rem 1.5rem;
+        }
+
+        nav .nav-links {
+          gap: 1.5rem;
+        }
+
+        .hero {
+          padding: 6rem 1.5rem 3rem;
+        }
+
+        .features,
+        .products-page,
+        .faq-page,
+        .profile-page,
+        .bundles-page {
+          padding: 6rem 1.5rem 3rem;
+        }
+
+        .profile-container {
+          grid-template-columns: 1fr;
+        }
+
+        .admin-page {
+          flex-direction: column;
+        }
+
+        .admin-sidebar {
+          position: relative;
+          width: 100%;
+          height: auto;
+        }
+
+        .admin-content {
+          margin-left: 0;
+        }
+
+        footer {
+          padding: 3rem 1.5rem 1.5rem;
+        }
+      }
+
+      @media (max-width: 640px) {
+        nav .nav-links {
+          gap: 1rem;
+          font-size: 0.85rem;
+        }
+
+        .btn {
+          padding: 0.875rem 2rem;
+          font-size: 0.85rem;
+        }
+
+        .products-grid,
+        .features-grid,
+        .creators-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .recovery-form {
+          padding: 2.5rem;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation Anchors -->
+    <span id="home"></span>
+    <span id="products"></span>
+    <span id="faq"></span>
+    <span id="profile"></span>
+    <span id="recovery"></span>
+    <span id="admin"></span>
+    <span id="bundles"></span>
+
+    <!-- Navigation Bar -->
+    <nav>
+      <div class="nav-container">
+        <a href="#home" class="logo">PREMIUM</a>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#bundles">Bundles</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#admin">Admin</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="page-home" class="page">
+      <section class="hero">
+        <div class="hero-content">
+          <h1>Premium Digital Excellence</h1>
+          <p>
+            Experience the finest curated configurations from top creators.
+            Minimalist design meets maximum performance.
+          </p>
+          <a href="#products" class="btn"><span>Explore Products</span></a>
+        </div>
+      </section>
+
+      <section class="features">
+        <div class="features-container">
+          <h2>Why Choose Premium</h2>
+          <div class="features-grid">
+            <div class="feature-card">
+              <h3>Curated Excellence</h3>
+              <p>
+                Every configuration is carefully selected and optimized by
+                industry-leading creators to ensure peak performance and
+                quality.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Instant Access</h3>
+              <p>
+                Get immediate access to your purchase with secure delivery. No
+                waiting, no hassle, just pure premium content.
+              </p>
+            </div>
+            <div class="feature-card">
+              <h3>Lifetime Updates</h3>
+              <p>
+                Receive continuous updates and improvements. Your investment
+                grows with evolving creator expertise.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-content">
+          <div>
+            <h4>Premium</h4>
+            <p>Delivering excellence in digital configurations since 2024.</p>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <ul style="list-style: none">
+              <li>
+                <a
+                  href="#products"
+                  style="color: var(--gray-400); text-decoration: none"
+                  >Products</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#faq"
+                  style="color: var(--gray-400); text-decoration: none"
+                  >FAQ</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#profile"
+                  style="color: var(--gray-400); text-decoration: none"
+                  >My Account</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Connect</h4>
+            <ul class="social-links">
+              <li><a href="#">𝕏</a></li>
+              <li><a href="#">⬤</a></li>
+              <li><a href="#">▶</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Premium. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- PRODUCTS PAGE -->
+    <div id="page-products" class="page">
+      <section class="products-page">
+        <div class="products-container">
+          <h1>Premium Configurations</h1>
+          <div class="products-grid">
+            <div class="product-card">
+              <div class="product-image">α</div>
+              <div class="product-info">
+                <h3>Alpha Config</h3>
+                <p>
+                  Professional-grade configuration optimized for maximum
+                  performance and efficiency.
+                </p>
+                <div class="product-price">$49</div>
+                <a href="#" class="btn"><span>Buy Now</span></a>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="product-image">β</div>
+              <div class="product-info">
+                <h3>Beta Bundle</h3>
+                <p>
+                  Complete package with advanced features and lifetime support
+                  included.
+                </p>
+                <div class="product-price">$89</div>
+                <a href="#" class="btn"><span>Buy Now</span></a>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="product-image">γ</div>
+              <div class="product-info">
+                <h3>Gamma Elite</h3>
+                <p>
+                  Ultimate configuration with all premium features and priority
+                  updates.
+                </p>
+                <div class="product-price">$129</div>
+                <a href="#" class="btn"><span>Buy Now</span></a>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="product-image">δ</div>
+              <div class="product-info">
+                <h3>Delta Pro</h3>
+                <p>
+                  Advanced setup designed for content creators and power users.
+                </p>
+                <div class="product-price">$149</div>
+                <a href="#" class="btn"><span>Buy Now</span></a>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="product-image">ε</div>
+              <div class="product-info">
+                <h3>Epsilon Master</h3>
+                <p>
+                  Master-level configuration with exclusive optimization
+                  techniques.
+                </p>
+                <div class="product-price">$199</div>
+                <a href="#" class="btn"><span>Buy Now</span></a>
+              </div>
+            </div>
+            <div class="product-card">
+              <div class="product-image">ζ</div>
+              <div class="product-info">
+                <h3>Zeta Ultimate</h3>
+                <p>
+                  The pinnacle of configuration excellence with VIP support.
+                </p>
+                <div class="product-price">$299</div>
+                <a href="#" class="btn"><span>Buy Now</span></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-content">
+          <div>
+            <h4>Premium</h4>
+            <p>Delivering excellence in digital configurations since 2024.</p>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <ul style="list-style: none">
+              <li>
+                <a
+                  href="#products"
+                  style="color: var(--gray-400); text-decoration: none"
+                  >Products</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#faq"
+                  style="color: var(--gray-400); text-decoration: none"
+                  >FAQ</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#profile"
+                  style="color: var(--gray-400); text-decoration: none"
+                  >My Account</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Connect</h4>
+            <ul class="social-links">
+              <li><a href="#">𝕏</a></li>
+              <li><a href="#">⬤</a></li>
+              <li><a href="#">▶</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Premium. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- FAQ PAGE -->
+    <div id="page-faq" class="page">
+      <section class="faq-page">
+        <div class="faq-container">
+          <h1>Frequently Asked Questions</h1>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <input type="checkbox" id="faq1" />
+              <label for="faq1"
+                >How do I access my purchased configuration?</label
+              >
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  After completing your purchase, you'll receive instant access
+                  to your configuration via email. The download link will also
+                  be available in your profile dashboard under "Purchase
+                  History."
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <input type="checkbox" id="faq2" />
+              <label for="faq2">Are updates included with my purchase?</label>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  Yes! All configurations include lifetime updates at no
+                  additional cost. Whenever a creator releases an improvement or
+                  optimization, you'll receive automatic notification and access
+                  to the latest version.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <input type="checkbox" id="faq3" />
+              <label for="faq3">What payment methods do you accept?</label>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  We accept all major credit cards, PayPal, and cryptocurrency
+                  payments. All transactions are secured with industry-standard
+                  encryption to protect your information.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <input type="checkbox" id="faq4" />
+              <label for="faq4">Can I get a refund if I'm not satisfied?</label>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  We offer a 30-day money-back guarantee. If you're not
+                  completely satisfied with your configuration, contact our
+                  support team within 30 days for a full refund, no questions
+                  asked.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <input type="checkbox" id="faq5" />
+              <label for="faq5">Do you offer support for installation?</label>
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  Yes! Each configuration comes with detailed installation
+                  guides and video tutorials. Additionally, our support team is
+                  available 24/7 via email and live chat to assist with any
+                  questions.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <input type="checkbox" id="faq6" />
+              <label for="faq6"
+                >Can I use the configuration on multiple devices?</label
+              >
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  Your purchase includes a personal license that allows
+                  installation on up to 3 devices. For commercial or multi-user
+                  licenses, please contact our sales team for custom pricing
+                  options.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-content">
+          <div>
+            <h4>Premium</h4>
+            <p>Delivering excellence in digital configurations since 2024.</p>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <ul style="list-style: none">
+              <li>
+                <a
+                  href="#products"
+                  style="color: var(--gray-400); text-decoration: none"
+                  >Products</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#faq"
+                  style="color: var(--gray-400); text-decoration: none"
+                  >FAQ</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#profile"
+                  style="color: var(--gray-400); text-decoration: none"
+                  >My Account</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Connect</h4>
+            <ul class="social-links">
+              <li><a href="#">𝕏</a></li>
+              <li><a href="#">⬤</a></li>
+              <li><a href="#">▶</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Premium. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- PROFILE PAGE -->
+    <div id="page-profile" class="page">
+      <section class="profile-page">
+        <div class="profile-container">
+          <aside class="profile-sidebar">
+            <div class="profile-avatar">J</div>
+            <div class="profile-info">
+              <h2>John Doe</h2>
+              <p>john.doe@email.com</p>
+            </div>
+            <div class="profile-actions">
+              <a href="#" class="btn"><span>Settings</span></a>
+              <a href="#" class="btn btn-outline"><span>Logout</span></a>
+            </div>
+          </aside>
+
+          <main class="profile-main">
+            <section class="profile-section">
+              <h3>Purchase History</h3>
+              <div class="purchase-item">
+                <div class="purchase-details">
+                  <h4>Alpha Config</h4>
+                  <p>Purchased on January 15, 2026</p>
+                </div>
+                <div class="purchase-price">$49</div>
+              </div>
+              <div class="purchase-item">
+                <div class="purchase-details">
+                  <h4>Gamma Elite</h4>
+                  <p>Purchased on December 3, 2025</p>
+                </div>
+                <div class="purchase-price">$129</div>
+              </div>
+              <div class="purchase-item">
+                <div class="purchase-details">
+                  <h4>Beta Bundle</h4>
+                  <p>Purchased on November 20, 2025</p>
+                </div>
+                <div class="purchase-price">$89</div>
+              </div>
+            </section>
+
+            <section class="profile-section">
+              <h3>Account Settings</h3>
+              <form>
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input type="text" value="John Doe" />
+                </div>
+                <div class="form-group">
+                  <label>Email Address</label>
+                  <input type="email" value="john.doe@email.com" />
+                </div>
+                <div class="form-group">
+                  <label>Current Password</label>
+                  <input type="password" placeholder="Enter current password" />
+                </div>
+                <div class="form-group">
+                  <label>New Password</label>
+                  <input type="password" placeholder="Enter new password" />
+                </div>
+                <button type="submit" class="btn">
+                  <span>Update Profile</span>
+                </button>
+              </form>
+            </section>
+          </main>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-content">
+          <div>
+            <h4>Premium</h4>
+            <p>Delivering excellence in digital configurations since 2024.</p>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <ul style="list-style: none">
+              <li>
+                <a
+                  href="#products"
+                  style="color: var(--gray-400); text-decoration: none"
+                  >Products</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#faq"
+                  style="color: var(--gray-400); text-decoration: none"
+                  >FAQ</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#profile"
+                  style="color: var(--gray-400); text-decoration: none"
+                  >My Account</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Connect</h4>
+            <ul class="social-links">
+              <li><a href="#">𝕏</a></li>
+              <li><a href="#">⬤</a></li>
+              <li><a href="#">▶</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Premium. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- PASSWORD RECOVERY PAGE -->
+    <div id="page-recovery" class="page">
+      <section class="recovery-page">
+        <form class="recovery-form">
+          <h2>Password Recovery</h2>
+          <p>
+            Enter your email address and we'll send you a link to reset your
+            password.
+          </p>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" placeholder="Enter your email" />
+          </div>
+          <button type="submit" class="btn">
+            <span>Send Recovery Link</span>
+          </button>
+          <div class="back-link">
+            <a href="#profile">← Back to Login</a>
+          </div>
+        </form>
+      </section>
+    </div>
+
+    <!-- ADMIN PANEL -->
+    <div id="page-admin" class="page">
+      <div class="admin-page">
+        <aside class="admin-sidebar">
+          <h2>Admin Panel</h2>
+          <ul class="admin-nav">
+            <li><a href="#admin">Dashboard</a></li>
+            <li><a href="#admin">Logs</a></li>
+            <li><a href="#admin">Users</a></li>
+            <li><a href="#admin">Promo Codes</a></li>
+            <li><a href="#admin">Key Generator</a></li>
+            <li><a href="#admin">Auto Update Upload</a></li>
+            <li><a href="#admin">Withdrawals</a></li>
+          </ul>
+        </aside>
+
+        <main class="admin-content">
+          <div class="admin-header">
+            <h1>Dashboard Overview</h1>
+            <p>Welcome back, Administrator</p>
+          </div>
+
+          <div class="admin-grid">
+            <div class="admin-card">
+              <h3>Total Users</h3>
+              <div class="stat">2,458</div>
+            </div>
+            <div class="admin-card">
+              <h3>Active Licenses</h3>
+              <div class="stat">1,892</div>
+            </div>
+            <div class="admin-card">
+              <h3>Revenue (MTD)</h3>
+              <div class="stat">$24.5K</div>
+            </div>
+            <div class="admin-card">
+              <h3>Pending Issues</h3>
+              <div class="stat">12</div>
+            </div>
+          </div>
+
+          <div class="admin-table-container">
+            <h3>Recent Users</h3>
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>User ID</th>
+                  <th>Email</th>
+                  <th>Joined</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#2458</td>
+                  <td>user@example.com</td>
+                  <td>Feb 13, 2026</td>
+                  <td>Active</td>
+                </tr>
+                <tr>
+                  <td>#2457</td>
+                  <td>admin@example.com</td>
+                  <td>Feb 12, 2026</td>
+                  <td>Active</td>
+                </tr>
+                <tr>
+                  <td>#2456</td>
+                  <td>test@example.com</td>
+                  <td>Feb 11, 2026</td>
+                  <td>Inactive</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="admin-form">
+            <h3>Generate Promo Code</h3>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Code Name</label>
+                <input type="text" placeholder="SUMMER2026" />
+              </div>
+              <div class="form-group">
+                <label>Discount %</label>
+                <input type="number" placeholder="25" />
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Valid Until</label>
+                <input type="date" />
+              </div>
+              <div class="form-group">
+                <label>Max Uses</label>
+                <input type="number" placeholder="100" />
+              </div>
+            </div>
+            <button type="submit" class="btn">
+              <span>Create Promo Code</span>
+            </button>
+          </div>
+
+          <div class="admin-form" style="margin-top: 2rem">
+            <h3>Auto Update Upload</h3>
+            <div class="form-group">
+              <label>Select Configuration</label>
+              <input type="text" placeholder="Select configuration to update" />
+            </div>
+            <div class="form-group">
+              <label>Upload File</label>
+              <input type="file" style="padding: 0.75rem" />
+            </div>
+            <div class="form-group">
+              <label>Version Notes</label>
+              <input
+                type="text"
+                placeholder="Version 2.1.0 - Bug fixes and improvements"
+              />
+            </div>
+            <button type="submit" class="btn">
+              <span>Upload Update</span>
+            </button>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- YOUTUBER BUNDLES PAGE -->
+    <div id="page-bundles" class="page">
+      <section class="bundles-page">
+        <div class="bundles-hero">
+          <h1>Creator Signature Bundles</h1>
+          <p>
+            Get exclusive configurations from the world's top content creators.
+            Each bundle includes their personal setup, optimization tips, and
+            lifetime support.
+          </p>
+          <a href="#products" class="btn"><span>View All Bundles</span></a>
+        </div>
+
+        <div class="creators-grid">
+          <div class="creator-card">
+            <div class="creator-avatar">M</div>
+            <h3>MaxGaming Pro</h3>
+            <p>Professional esports player with 5M+ followers</p>
+            <a href="#" class="btn"><span>View Bundle</span></a>
+          </div>
+          <div class="creator-card">
+            <div class="creator-avatar">S</div>
+            <h3>StreamQueen</h3>
+            <p>Top content creator specializing in streaming setups</p>
+            <a href="#" class="btn"><span>View Bundle</span></a>
+          </div>
+          <div class="creator-card">
+            <div class="creator-avatar">T</div>
+            <h3>TechMaster</h3>
+            <p>Tech reviewer with premium optimization knowledge</p>
+            <a href="#" class="btn"><span>View Bundle</span></a>
+          </div>
+        </div>
+
+        <div class="comparison-section">
+          <h2>Bundle Comparison</h2>
+          <div class="comparison-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Feature</th>
+                  <th>MaxGaming Pro</th>
+                  <th>StreamQueen</th>
+                  <th>TechMaster</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Configuration Files</td>
+                  <td>15+</td>
+                  <td>20+</td>
+                  <td>25+</td>
+                </tr>
+                <tr>
+                  <td>Video Tutorials</td>
+                  <td>10 hours</td>
+                  <td>15 hours</td>
+                  <td>20 hours</td>
+                </tr>
+                <tr>
+                  <td>Priority Support</td>
+                  <td>✓</td>
+                  <td>✓</td>
+                  <td>✓</td>
+                </tr>
+                <tr>
+                  <td>Lifetime Updates</td>
+                  <td>✓</td>
+                  <td>✓</td>
+                  <td>✓</td>
+                </tr>
+                <tr>
+                  <td>Private Community</td>
+                  <td>✓</td>
+                  <td>✓</td>
+                  <td>✓</td>
+                </tr>
+                <tr>
+                  <td>Price</td>
+                  <td>$149</td>
+                  <td>$179</td>
+                  <td>$199</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="testimonials-section">
+          <h2>What Our Customers Say</h2>
+          <div class="testimonial">
+            <p>
+              "The MaxGaming Pro bundle completely transformed my streaming
+              setup. The configurations are incredibly optimized and I saw
+              immediate improvements in performance."
+            </p>
+            <div class="testimonial-author">
+              — Alex Thompson, Content Creator
+            </div>
+          </div>
+          <div class="testimonial">
+            <p>
+              "StreamQueen's bundle is worth every penny. The attention to
+              detail and the quality of the configurations are unmatched. Highly
+              recommended!"
+            </p>
+            <div class="testimonial-author">
+              — Sarah Martinez, Professional Streamer
+            </div>
+          </div>
+          <div class="testimonial">
+            <p>
+              "TechMaster's configuration saved me weeks of trial and error.
+              Everything just works perfectly out of the box. Best investment
+              I've made this year."
+            </p>
+            <div class="testimonial-author">— David Chen, YouTuber</div>
+          </div>
+        </div>
+
+        <div class="cta-section">
+          <h2>Ready to Elevate Your Setup?</h2>
+          <p>
+            Join thousands of satisfied creators who have optimized their
+            workflow with our premium bundles.
+          </p>
+          <a href="#products" class="btn"><span>Get Started Today</span></a>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-content">
+          <div>
+            <h4>Premium</h4>
+            <p>Delivering excellence in digital configurations since 2024.</p>
+          </div>
+          <div>
+            <h4>Quick Links</h4>
+            <ul style="list-style: none">
+              <li>
+                <a
+                  href="#products"
+                  style="color: var(--gray-400); text-decoration: none"
+                  >Products</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#faq"
+                  style="color: var(--gray-400); text-decoration: none"
+                  >FAQ</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#profile"
+                  style="color: var(--gray-400); text-decoration: none"
+                  >My Account</a
+                >
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4>Connect</h4>
+            <ul class="social-links">
+              <li><a href="#">𝕏</a></li>
+              <li><a href="#">⬤</a></li>
+              <li><a href="#">▶</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Premium. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
