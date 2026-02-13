@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Premium - Лучшие конфигурации для игроков</title>
+    <title>PulseVisuals - Премиум конфигурации для Minecraft</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
@@ -27,6 +27,9 @@
         --text-secondary: #9ca3af;
         --text-muted: #6b7280;
         --border: #1f1f28;
+        --success: #10b981;
+        --danger: #ef4444;
+        --warning: #f59e0b;
         --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
@@ -165,11 +168,11 @@
 
       #home:target ~ #page-home,
       #products:target ~ #page-products,
-      #tarify:target ~ #page-tarify,
+      #youtubers:target ~ #page-youtubers,
       #faq:target ~ #page-faq,
       #profile:target ~ #page-profile,
-      #admin:target ~ #page-admin,
-      #login:target ~ #page-login {
+      #recovery:target ~ #page-recovery,
+      #admin:target ~ #page-admin {
         display: block;
       }
 
@@ -179,11 +182,11 @@
 
       #home:target ~ #page-home,
       #products:target ~ #page-home,
-      #tarify:target ~ #page-home,
+      #youtubers:target ~ #page-home,
       #faq:target ~ #page-home,
       #profile:target ~ #page-home,
-      #admin:target ~ #page-home,
-      #login:target ~ #page-home {
+      #recovery:target ~ #page-home,
+      #admin:target ~ #page-home {
         display: none;
       }
 
@@ -243,14 +246,62 @@
         color: var(--text-primary);
       }
 
-      .nav-links a.active {
-        color: var(--text-primary);
-      }
-
       .nav-actions {
         display: flex;
         align-items: center;
         gap: 1.5rem;
+      }
+
+      /* ==================== MOBILE MENU ==================== */
+      .mobile-menu-btn {
+        display: none;
+        width: 40px;
+        height: 40px;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: var(--transition);
+      }
+
+      .mobile-menu-btn span {
+        width: 20px;
+        height: 2px;
+        background: var(--text-secondary);
+        transition: var(--transition);
+      }
+
+      .mobile-menu-btn:hover {
+        background: var(--bg-card);
+        border-color: var(--primary);
+      }
+
+      .mobile-menu-btn:hover span {
+        background: var(--primary);
+      }
+
+      #mobile-menu-toggle {
+        display: none;
+      }
+
+      #mobile-menu-toggle:checked ~ .nav-links {
+        transform: translateX(0);
+      }
+
+      #mobile-menu-toggle:checked + .mobile-menu-btn span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+
+      #mobile-menu-toggle:checked + .mobile-menu-btn span:nth-child(2) {
+        opacity: 0;
+      }
+
+      #mobile-menu-toggle:checked + .mobile-menu-btn span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
       }
 
       .icon-btn {
@@ -265,31 +316,13 @@
         color: var(--text-secondary);
         cursor: pointer;
         transition: var(--transition);
+        text-decoration: none;
       }
 
       .icon-btn:hover {
         background: var(--bg-card);
         border-color: var(--primary);
         color: var(--primary);
-      }
-
-      .btn-login {
-        padding: 0.75rem 2rem;
-        background: var(--primary);
-        color: var(--text-primary);
-        text-decoration: none;
-        font-weight: 600;
-        font-size: 0.95rem;
-        border-radius: 12px;
-        transition: var(--transition);
-        border: none;
-        cursor: pointer;
-      }
-
-      .btn-login:hover {
-        background: var(--primary-dark);
-        transform: translateY(-2px);
-        box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
       }
 
       /* ==================== BUTTONS ==================== */
@@ -305,6 +338,7 @@
         transition: var(--transition);
         border: none;
         cursor: pointer;
+        text-align: center;
       }
 
       .btn:hover {
@@ -317,6 +351,7 @@
         background: transparent;
         border: 2px solid var(--border);
         color: var(--text-secondary);
+        padding: 0.875rem 2.25rem;
       }
 
       .btn-outline:hover {
@@ -324,6 +359,11 @@
         border-color: var(--primary);
         color: var(--text-primary);
         box-shadow: none;
+      }
+
+      .btn-small {
+        padding: 0.75rem 1.75rem;
+        font-size: 0.875rem;
       }
 
       /* ==================== HOME PAGE ==================== */
@@ -364,20 +404,11 @@
         margin-right: auto;
       }
 
-      .hero-image {
-        width: 100%;
-        max-width: 800px;
-        margin-top: 4rem;
-        animation: fadeInUp 0.8s ease-out 0.3s backwards;
-      }
-
-      .pulse-menu-demo {
-        width: 100%;
-        height: auto;
-        border-radius: 16px;
-        border: 1px solid var(--border);
-        overflow: hidden;
-        background: var(--bg-card);
+      .hero-actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
       .scroll-indicator {
@@ -421,19 +452,19 @@
         }
       }
 
-      /* ==================== TARIFY PAGE ==================== */
-      .tarify-page {
+      /* ==================== PRODUCTS PAGE ==================== */
+      .products-page {
         padding: 8rem 2rem 4rem;
         min-height: 100vh;
       }
 
-      .tarify-header {
+      .page-header {
         text-align: center;
-        max-width: 700px;
-        margin: 0 auto 5rem;
+        max-width: 800px;
+        margin: 0 auto 4rem;
       }
 
-      .tarify-header h1 {
+      .page-header h1 {
         font-size: clamp(2.5rem, 5vw, 4rem);
         font-weight: 800;
         margin-bottom: 1rem;
@@ -443,87 +474,10 @@
         background-clip: text;
       }
 
-      .tarify-header p {
+      .page-header p {
         font-size: 1.15rem;
         color: var(--text-secondary);
         line-height: 1.7;
-      }
-
-      .pricing-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-        gap: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-
-      .pricing-card {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 20px;
-        padding: 3rem;
-        text-align: center;
-        transition: var(--transition);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .pricing-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(
-          90deg,
-          var(--primary) 0%,
-          var(--primary-light) 100%
-        );
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: var(--transition);
-      }
-
-      .pricing-card:hover::before {
-        transform: scaleX(1);
-      }
-
-      .pricing-card:hover {
-        transform: translateY(-10px);
-        border-color: var(--primary);
-        box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
-      }
-
-      .pricing-logo {
-        width: 48px;
-        height: 48px;
-        margin: 0 auto 1.5rem;
-        opacity: 0.6;
-      }
-
-      .pricing-card h3 {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-      }
-
-      .pricing-card .price {
-        font-size: 1.15rem;
-        color: var(--text-secondary);
-        margin-bottom: 2rem;
-      }
-
-      .pricing-card p {
-        color: var(--text-secondary);
-        margin-bottom: 2rem;
-        line-height: 1.7;
-      }
-
-      /* ==================== PRODUCTS PAGE ==================== */
-      .products-page {
-        padding: 8rem 2rem 4rem;
-        min-height: 100vh;
       }
 
       .products-grid {
@@ -531,7 +485,7 @@
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
         gap: 2rem;
         max-width: 1400px;
-        margin: 3rem auto 0;
+        margin: 0 auto;
       }
 
       .product-card {
@@ -614,6 +568,129 @@
         margin-bottom: 1.5rem;
       }
 
+      .product-info .btn {
+        width: 100%;
+      }
+
+      /* ==================== YOUTUBERS PAGE ==================== */
+      .youtubers-page {
+        padding: 8rem 2rem 4rem;
+        min-height: 100vh;
+      }
+
+      .youtuber-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 3rem;
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .youtuber-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--primary) 0%,
+          var(--primary-light) 100%
+        );
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: var(--transition);
+      }
+
+      .youtuber-card:hover::before {
+        transform: scaleX(1);
+      }
+
+      .youtuber-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--primary);
+        box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
+      }
+
+      .youtuber-header {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom: 2rem;
+      }
+
+      .youtuber-avatar {
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-light) 100%
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        font-weight: 800;
+        flex-shrink: 0;
+      }
+
+      .youtuber-info h3 {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+      }
+
+      .youtuber-info .subscribers {
+        color: var(--text-secondary);
+        font-size: 1rem;
+      }
+
+      .youtuber-description {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        margin-bottom: 2rem;
+      }
+
+      .config-features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+        padding: 2rem;
+        background: var(--bg-dark);
+        border-radius: 12px;
+      }
+
+      .feature-item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+
+      .feature-item .icon {
+        color: var(--primary);
+        font-size: 1.5rem;
+      }
+
+      .config-price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+      }
+
+      .price-tag {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--primary);
+      }
+
       /* ==================== FAQ PAGE ==================== */
       .faq-page {
         padding: 8rem 2rem 4rem;
@@ -623,21 +700,6 @@
       .faq-container {
         max-width: 900px;
         margin: 0 auto;
-      }
-
-      .faq-header {
-        text-align: center;
-        margin-bottom: 4rem;
-      }
-
-      .faq-header h1 {
-        font-size: clamp(2.5rem, 5vw, 4rem);
-        font-weight: 800;
-        margin-bottom: 1rem;
-        background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
       }
 
       .faq-item {
@@ -699,83 +761,6 @@
         padding: 0 2rem 2rem;
         color: var(--text-secondary);
         line-height: 1.8;
-      }
-
-      /* ==================== LOGIN PAGE ==================== */
-      .login-page {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8rem 2rem 4rem;
-      }
-
-      .login-container {
-        max-width: 900px;
-        width: 100%;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: center;
-      }
-
-      .login-content h2 {
-        font-size: 3rem;
-        font-weight: 800;
-        margin-bottom: 1rem;
-        line-height: 1.2;
-      }
-
-      .login-content h2 .highlight {
-        color: var(--primary);
-      }
-
-      .login-content p {
-        color: var(--text-secondary);
-        font-size: 1.15rem;
-        margin-bottom: 3rem;
-        line-height: 1.7;
-      }
-
-      .login-actions {
-        display: flex;
-        gap: 1rem;
-      }
-
-      .login-form {
-        background: var(--bg-card);
-        border: 1px solid var(--border);
-        border-radius: 20px;
-        padding: 3rem;
-      }
-
-      .form-group {
-        margin-bottom: 1.5rem;
-      }
-
-      .form-group label {
-        display: block;
-        margin-bottom: 0.75rem;
-        font-weight: 600;
-        color: var(--text-secondary);
-      }
-
-      .form-group input {
-        width: 100%;
-        padding: 1rem;
-        background: var(--bg-dark);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        color: var(--text-primary);
-        font-family: "Inter", sans-serif;
-        font-size: 1rem;
-        transition: var(--transition);
-      }
-
-      .form-group input:focus {
-        outline: none;
-        border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
       }
 
       /* ==================== PROFILE PAGE ==================== */
@@ -888,6 +873,105 @@
       .purchase-price {
         font-size: 1.5rem;
         font-weight: 700;
+        color: var(--primary);
+      }
+
+      /* ==================== RECOVERY PAGE ==================== */
+      .recovery-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8rem 2rem 4rem;
+      }
+
+      .recovery-container {
+        max-width: 500px;
+        width: 100%;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 3rem;
+        text-align: center;
+      }
+
+      .recovery-icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-light) 100%
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        margin: 0 auto 2rem;
+      }
+
+      .recovery-container h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+      }
+
+      .recovery-container p {
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        line-height: 1.7;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+        text-align: left;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        width: 100%;
+        padding: 1rem;
+        background: var(--bg-dark);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text-primary);
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .form-group input:focus,
+      .form-group select:focus,
+      .form-group textarea:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+      }
+
+      .form-group textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+
+      .back-link {
+        margin-top: 1.5rem;
+      }
+
+      .back-link a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .back-link a:hover {
         color: var(--primary);
       }
 
@@ -1034,6 +1118,29 @@
         background: var(--bg-dark);
       }
 
+      .status-badge {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
+        border-radius: 6px;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .status-active {
+        background: rgba(16, 185, 129, 0.1);
+        color: var(--success);
+      }
+
+      .status-inactive {
+        background: rgba(107, 114, 128, 0.1);
+        color: var(--text-muted);
+      }
+
+      .status-pending {
+        background: rgba(245, 158, 11, 0.1);
+        color: var(--warning);
+      }
+
       /* ==================== FOOTER ==================== */
       footer {
         background: var(--bg-darker);
@@ -1108,6 +1215,7 @@
         border-radius: 8px;
         color: var(--text-secondary);
         transition: var(--transition);
+        text-decoration: none;
       }
 
       .social-links a:hover {
@@ -1131,26 +1239,53 @@
           padding: 1rem 2rem;
         }
 
+        .mobile-menu-btn {
+          display: flex;
+        }
+
         .nav-links {
-          gap: 1.5rem;
+          position: fixed;
+          top: 73px;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          background: rgba(10, 10, 15, 0.98);
+          backdrop-filter: blur(20px);
+          padding: 2rem;
+          gap: 0;
+          border-bottom: 1px solid var(--border);
+          transform: translateX(-100%);
+          transition: transform 0.3s ease;
+          z-index: 999;
+        }
+
+        .nav-links li {
+          width: 100%;
+          border-bottom: 1px solid var(--border);
+        }
+
+        .nav-links li:last-child {
+          border-bottom: none;
+        }
+
+        .nav-links a {
+          display: block;
+          padding: 1rem 0;
+          font-size: 1.1rem;
         }
 
         .hero {
           padding: 6rem 1.5rem 3rem;
         }
 
-        .tarify-page,
         .products-page,
+        .youtubers-page,
         .faq-page,
         .profile-page {
           padding: 6rem 1.5rem 3rem;
         }
 
         .profile-container {
-          grid-template-columns: 1fr;
-        }
-
-        .login-container {
           grid-template-columns: 1fr;
         }
 
@@ -1162,21 +1297,42 @@
 
         .admin-content {
           margin-left: 0;
+          padding: 2rem;
         }
 
         .footer-content {
           grid-template-columns: 1fr;
           gap: 2rem;
         }
+
+        .youtuber-header {
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .config-features {
+          grid-template-columns: 1fr;
+        }
+
+        .stats-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
       }
 
       @media (max-width: 640px) {
-        .nav-links {
-          gap: 1rem;
-          font-size: 0.85rem;
+        nav {
+          padding: 1rem 1.5rem;
         }
 
-        .pricing-cards,
+        .logo {
+          font-size: 1.1rem;
+        }
+
+        .logo svg {
+          width: 24px;
+          height: 24px;
+        }
+
         .products-grid {
           grid-template-columns: 1fr;
         }
@@ -1184,6 +1340,510 @@
         .btn {
           padding: 0.875rem 2rem;
           font-size: 0.9rem;
+        }
+
+        .hero-actions {
+          flex-direction: column;
+          width: 100%;
+        }
+
+        .hero-actions .btn {
+          width: 100%;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .hero p {
+          font-size: 1rem;
+        }
+
+        .page-header h1 {
+          font-size: 2rem;
+        }
+
+        .page-header p {
+          font-size: 1rem;
+        }
+
+        .product-image {
+          height: 180px;
+        }
+
+        .product-image .icon {
+          font-size: 3rem;
+        }
+
+        .youtuber-avatar {
+          width: 80px;
+          height: 80px;
+          font-size: 2rem;
+        }
+
+        .youtuber-info h3 {
+          font-size: 1.5rem;
+        }
+
+        .config-price {
+          flex-direction: column;
+          gap: 1.5rem;
+          align-items: flex-start;
+        }
+
+        .config-price .btn {
+          width: 100%;
+        }
+
+        .stats-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .admin-table {
+          font-size: 0.85rem;
+        }
+
+        .admin-table th,
+        .admin-table td {
+          padding: 0.75rem 0.5rem;
+        }
+
+        .recovery-container {
+          padding: 2rem;
+        }
+
+        .recovery-icon {
+          width: 60px;
+          height: 60px;
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        nav {
+          padding: 1rem;
+        }
+
+        .nav-actions {
+          gap: 0.75rem;
+        }
+
+        .icon-btn {
+          width: 36px;
+          height: 36px;
+          font-size: 0.9rem;
+        }
+
+        .hero {
+          padding: 5rem 1rem 2rem;
+        }
+
+        .products-page,
+        .youtubers-page,
+        .faq-page,
+        .profile-page {
+          padding: 5rem 1rem 2rem;
+        }
+
+        .product-info {
+          padding: 1.5rem;
+        }
+
+        .product-info h3 {
+          font-size: 1.25rem;
+        }
+
+        .product-price {
+          font-size: 1.75rem;
+        }
+
+        .youtuber-card {
+          padding: 2rem 1.5rem;
+        }
+
+        .config-features {
+          padding: 1.5rem;
+        }
+
+        .price-tag {
+          font-size: 2rem;
+        }
+
+        .faq-question label {
+          font-size: 1rem;
+          padding: 1.5rem;
+        }
+
+        .faq-answer-content {
+          padding: 0 1.5rem 1.5rem;
+        }
+
+        .profile-sidebar {
+          padding: 1.5rem;
+        }
+
+        .profile-section {
+          padding: 2rem 1.5rem;
+        }
+
+        .admin-content {
+          padding: 1.5rem 1rem;
+        }
+
+        .admin-table-container {
+          padding: 1.5rem;
+        }
+
+        footer {
+          padding: 3rem 1rem 1.5rem;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .hero h1 {
+          font-size: 1.75rem;
+        }
+
+        .hero p {
+          font-size: 0.95rem;
+        }
+
+        .btn {
+          padding: 0.75rem 1.5rem;
+          font-size: 0.85rem;
+        }
+
+        .page-header h1 {
+          font-size: 1.75rem;
+        }
+
+        .product-info h3 {
+          font-size: 1.15rem;
+        }
+
+        .product-price {
+          font-size: 1.5rem;
+        }
+
+        .youtuber-info h3 {
+          font-size: 1.25rem;
+        }
+
+        .feature-item {
+          font-size: 0.9rem;
+        }
+
+        .faq-question label {
+          font-size: 0.95rem;
+          padding: 1.25rem;
+        }
+
+        .profile-info h2 {
+          font-size: 1.25rem;
+        }
+
+        .purchase-item {
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 1rem;
+        }
+
+        .admin-header h1 {
+          font-size: 1.75rem;
+        }
+
+        .stat-card .stat {
+          font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 320px) {
+        nav {
+          padding: 0.75rem;
+        }
+
+        .logo {
+          font-size: 1rem;
+        }
+
+        .logo svg {
+          width: 20px;
+          height: 20px;
+        }
+
+        .nav-links {
+          top: 63px;
+          padding: 1.5rem;
+        }
+
+        .hero {
+          padding: 4.5rem 0.75rem 2rem;
+        }
+
+        .hero h1 {
+          font-size: 1.5rem;
+        }
+
+        .hero p {
+          font-size: 0.9rem;
+        }
+
+        .btn {
+          padding: 0.7rem 1.25rem;
+          font-size: 0.8rem;
+        }
+
+        .products-page,
+        .youtubers-page,
+        .faq-page,
+        .profile-page {
+          padding: 4.5rem 0.75rem 2rem;
+        }
+
+        .page-header h1 {
+          font-size: 1.5rem;
+        }
+
+        .page-header p {
+          font-size: 0.9rem;
+        }
+
+        .product-card {
+          border-radius: 12px;
+        }
+
+        .product-image {
+          height: 160px;
+        }
+
+        .product-image .icon {
+          font-size: 2.5rem;
+        }
+
+        .product-info {
+          padding: 1.25rem;
+        }
+
+        .product-info h3 {
+          font-size: 1.1rem;
+        }
+
+        .product-info p {
+          font-size: 0.9rem;
+        }
+
+        .product-price {
+          font-size: 1.4rem;
+          margin-bottom: 1.25rem;
+        }
+
+        .youtuber-card {
+          padding: 1.5rem 1rem;
+          border-radius: 16px;
+        }
+
+        .youtuber-avatar {
+          width: 70px;
+          height: 70px;
+          font-size: 1.75rem;
+        }
+
+        .youtuber-info h3 {
+          font-size: 1.15rem;
+        }
+
+        .youtuber-info .subscribers {
+          font-size: 0.85rem;
+        }
+
+        .youtuber-description {
+          font-size: 0.9rem;
+        }
+
+        .config-features {
+          padding: 1.25rem;
+          gap: 1rem;
+        }
+
+        .feature-item {
+          font-size: 0.85rem;
+        }
+
+        .feature-item .icon {
+          font-size: 1.25rem;
+        }
+
+        .price-tag {
+          font-size: 1.75rem;
+        }
+
+        .faq-item {
+          border-radius: 10px;
+        }
+
+        .faq-question label {
+          font-size: 0.9rem;
+          padding: 1.15rem;
+        }
+
+        .faq-question label::after {
+          font-size: 1.25rem;
+          right: 1.15rem;
+        }
+
+        .faq-answer-content {
+          padding: 0 1.15rem 1.15rem;
+          font-size: 0.85rem;
+        }
+
+        .profile-sidebar {
+          padding: 1.25rem;
+          border-radius: 16px;
+        }
+
+        .profile-avatar {
+          width: 80px;
+          height: 80px;
+          font-size: 2rem;
+        }
+
+        .profile-info h2 {
+          font-size: 1.15rem;
+        }
+
+        .profile-section {
+          padding: 1.5rem 1rem;
+          border-radius: 16px;
+        }
+
+        .profile-section h3 {
+          font-size: 1.25rem;
+        }
+
+        .purchase-item {
+          padding: 1.25rem;
+          border-radius: 10px;
+        }
+
+        .purchase-details h4 {
+          font-size: 1rem;
+        }
+
+        .purchase-details p {
+          font-size: 0.8rem;
+        }
+
+        .purchase-price {
+          font-size: 1.25rem;
+        }
+
+        .recovery-container {
+          padding: 1.5rem;
+          border-radius: 16px;
+        }
+
+        .recovery-icon {
+          width: 50px;
+          height: 50px;
+          font-size: 1.75rem;
+        }
+
+        .recovery-container h2 {
+          font-size: 1.5rem;
+        }
+
+        .recovery-container p {
+          font-size: 0.9rem;
+        }
+
+        .form-group label {
+          font-size: 0.85rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+          padding: 0.875rem;
+          font-size: 0.9rem;
+        }
+
+        .admin-content {
+          padding: 1.25rem 0.75rem;
+        }
+
+        .admin-header h1 {
+          font-size: 1.5rem;
+        }
+
+        .admin-header p {
+          font-size: 0.85rem;
+        }
+
+        .stat-card {
+          padding: 1.5rem;
+          border-radius: 12px;
+        }
+
+        .stat-card h3 {
+          font-size: 0.85rem;
+        }
+
+        .stat-card .stat {
+          font-size: 1.75rem;
+        }
+
+        .admin-table-container {
+          padding: 1.25rem;
+          border-radius: 12px;
+        }
+
+        .admin-table-container h3 {
+          font-size: 1.15rem;
+        }
+
+        .admin-table {
+          font-size: 0.75rem;
+        }
+
+        .admin-table th,
+        .admin-table td {
+          padding: 0.65rem 0.4rem;
+        }
+
+        .status-badge {
+          padding: 0.2rem 0.5rem;
+          font-size: 0.75rem;
+        }
+
+        footer {
+          padding: 2.5rem 0.75rem 1.25rem;
+        }
+
+        .footer-logo {
+          font-size: 1.1rem;
+        }
+
+        .footer-logo svg {
+          width: 24px;
+          height: 24px;
+        }
+
+        footer h4 {
+          font-size: 0.9rem;
+        }
+
+        footer ul li {
+          font-size: 0.85rem;
+        }
+
+        .social-links a {
+          width: 36px;
+          height: 36px;
+          font-size: 0.85rem;
+        }
+
+        .footer-bottom {
+          font-size: 0.8rem;
         }
       }
     </style>
@@ -1207,11 +1867,11 @@
     <!-- Navigation Anchors -->
     <span id="home"></span>
     <span id="products"></span>
-    <span id="tarify"></span>
+    <span id="youtubers"></span>
     <span id="faq"></span>
     <span id="profile"></span>
+    <span id="recovery"></span>
     <span id="admin"></span>
-    <span id="login"></span>
 
     <!-- Navigation -->
     <nav>
@@ -1232,16 +1892,21 @@
           </svg>
           PulseVisuals
         </a>
+        <input type="checkbox" id="mobile-menu-toggle" />
+        <label for="mobile-menu-toggle" class="mobile-menu-btn">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
         <ul class="nav-links">
           <li><a href="#home">Главная</a></li>
-          <li><a href="#products">Функции</a></li>
-          <li><a href="#tarify">Тарифы</a></li>
-          <li><a href="#faq">Видеообзоры</a></li>
+          <li><a href="#products">Товары</a></li>
+          <li><a href="#youtubers">Конфиги YouTubers</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#profile">Профиль</a></li>
         </ul>
         <div class="nav-actions">
-          <button class="icon-btn">⚙</button>
-          <button class="icon-btn">🌐</button>
-          <a href="#login" class="btn-login">Логин</a>
+          <a href="#admin" class="icon-btn" title="Админ панель">⚙</a>
         </div>
       </div>
     </nav>
@@ -1256,21 +1921,9 @@
             производительность. Плавный геймплей, продуманный интерфейс и
             стабильная работа дают вам реальное превосходство в игре.
           </p>
-          <a href="#products" class="btn">Узнать больше</a>
-        </div>
-        <div class="hero-image">
-          <div
-            class="pulse-menu-demo"
-            style="
-              aspect-ratio: 16/9;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              font-size: 3rem;
-              color: var(--primary);
-            "
-          >
-            🎮
+          <div class="hero-actions">
+            <a href="#products" class="btn">Посмотреть товары</a>
+            <a href="#youtubers" class="btn-outline">Конфиги от YouTubers</a>
           </div>
         </div>
         <div class="scroll-indicator">
@@ -1317,150 +1970,10 @@
             <h4>Навигация</h4>
             <ul>
               <li><a href="#home">Главная</a></li>
-              <li><a href="#products">Функции</a></li>
-              <li><a href="#tarify">Тарифы</a></li>
-              <li><a href="#faq">Видеообзоры</a></li>
-              <li><a href="#login">Войти</a></li>
-              <li><a href="#profile">Регистрация</a></li>
-            </ul>
-          </div>
-          <div>
-            <h4>Поддержка</h4>
-            <ul>
-              <li><a href="#">Тех. поддержка</a></li>
-              <li><a href="#">Соглашение</a></li>
-              <li><a href="#">Политика</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>Made with ❤️ for Minecraft community</p>
-        </div>
-      </footer>
-    </div>
-
-    <!-- TARIFY PAGE -->
-    <div id="page-tarify" class="page">
-      <section class="tarify-page">
-        <div class="tarify-header">
-          <h1>Ваш идеальный тариф здесь</h1>
-          <p>
-            Несколько вариантов подписки, чтобы вы платили только за то, что
-            действительно нужно.
-          </p>
-        </div>
-
-        <div class="pricing-cards">
-          <div class="pricing-card">
-            <div class="pricing-logo">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M3 13h4l3 7 4-18 3 11h4"
-                  stroke="#6366f1"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </div>
-            <h3>30 дней</h3>
-            <p>
-              Приобретая этот товар, вы получаете 30-дневный доступ к полному
-              функционалу PulseVisual.
-            </p>
-            <a href="#" class="btn-outline">Приобрести</a>
-          </div>
-
-          <div class="pricing-card">
-            <div class="pricing-logo">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M3 13h4l3 7 4-18 3 11h4"
-                  stroke="#6366f1"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </div>
-            <h3>180 дней</h3>
-            <p class="price">🏆</p>
-            <p>
-              Вместе с этим товаром вы открываете себе полгода полного доступа к
-              PulseVisual.
-            </p>
-            <a href="#" class="btn">Приобрести</a>
-          </div>
-
-          <div class="pricing-card">
-            <div class="pricing-logo">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M3 13h4l3 7 4-18 3 11h4"
-                  stroke="#6366f1"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </div>
-            <h3>Навсегда</h3>
-            <p>
-              Максимум возможностей PulseVisual — навсегда, без продлений и
-              доплат.
-            </p>
-            <a href="#" class="btn-outline">Приобрести</a>
-          </div>
-        </div>
-      </section>
-
-      <footer>
-        <div class="footer-content">
-          <div>
-            <div class="footer-logo">
-              <svg
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M3 13h4l3 7 4-18 3 11h4"
-                  stroke="#6366f1"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-              PulseVisuals
-            </div>
-            <p style="color: var(--text-muted)">
-              © Pulse 2025-2026. Все права защищены.
-            </p>
-            <div class="social-links">
-              <a href="#">VK</a>
-              <a href="#">TG</a>
-              <a href="#">DC</a>
-            </div>
-          </div>
-          <div>
-            <h4>Навигация</h4>
-            <ul>
-              <li><a href="#home">Главная</a></li>
-              <li><a href="#products">Функции</a></li>
-              <li><a href="#tarify">Тарифы</a></li>
-              <li><a href="#faq">Видеообзоры</a></li>
+              <li><a href="#products">Товары</a></li>
+              <li><a href="#youtubers">Конфиги YouTubers</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#profile">Профиль</a></li>
             </ul>
           </div>
           <div>
@@ -1481,9 +1994,12 @@
     <!-- PRODUCTS PAGE -->
     <div id="page-products" class="page">
       <section class="products-page">
-        <div class="tarify-header">
-          <h1>Премиум конфигурации</h1>
-          <p>Лучшие наборы от топовых создателей контента</p>
+        <div class="page-header">
+          <h1>Премиум товары</h1>
+          <p>
+            Лучшие конфигурации и наборы для максимальной производительности в
+            игре
+          </p>
         </div>
 
         <div class="products-grid">
@@ -1495,7 +2011,7 @@
               <h3>Alpha Config</h3>
               <p>
                 Профессиональная конфигурация для максимальной
-                производительности
+                производительности и стабильности
               </p>
               <div class="product-price">$49</div>
               <a href="#" class="btn">Купить сейчас</a>
@@ -1508,7 +2024,9 @@
             </div>
             <div class="product-info">
               <h3>Beta Bundle</h3>
-              <p>Полный пакет с расширенными функциями</p>
+              <p>
+                Полный пакет с расширенными функциями и пожизненной поддержкой
+              </p>
               <div class="product-price">$89</div>
               <a href="#" class="btn">Купить сейчас</a>
             </div>
@@ -1520,7 +2038,10 @@
             </div>
             <div class="product-info">
               <h3>Gamma Elite</h3>
-              <p>Элитный набор со всеми премиум-возможностями</p>
+              <p>
+                Элитный набор со всеми премиум-возможностями и приоритетными
+                обновлениями
+              </p>
               <div class="product-price">$129</div>
               <a href="#" class="btn">Купить сейчас</a>
             </div>
@@ -1532,7 +2053,10 @@
             </div>
             <div class="product-info">
               <h3>Delta Pro</h3>
-              <p>Продвинутая настройка для контент-мейкеров</p>
+              <p>
+                Продвинутая настройка для контент-мейкеров и профессиональных
+                игроков
+              </p>
               <div class="product-price">$149</div>
               <a href="#" class="btn">Купить сейчас</a>
             </div>
@@ -1544,7 +2068,7 @@
             </div>
             <div class="product-info">
               <h3>Epsilon Master</h3>
-              <p>Мастер-уровень с эксклюзивными техниками</p>
+              <p>Мастер-уровень с эксклюзивными техниками оптимизации</p>
               <div class="product-price">$199</div>
               <a href="#" class="btn">Купить сейчас</a>
             </div>
@@ -1556,7 +2080,9 @@
             </div>
             <div class="product-info">
               <h3>Zeta Ultimate</h3>
-              <p>Вершина совершенства с VIP поддержкой</p>
+              <p>
+                Вершина совершенства с VIP поддержкой 24/7 и всеми функциями
+              </p>
               <div class="product-price">$299</div>
               <a href="#" class="btn">Купить сейчас</a>
             </div>
@@ -1596,9 +2122,298 @@
             <h4>Навигация</h4>
             <ul>
               <li><a href="#home">Главная</a></li>
-              <li><a href="#products">Функции</a></li>
-              <li><a href="#tarify">Тарифы</a></li>
-              <li><a href="#faq">Видеообзоры</a></li>
+              <li><a href="#products">Товары</a></li>
+              <li><a href="#youtubers">Конфиги YouTubers</a></li>
+              <li><a href="#faq">FAQ</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Поддержка</h4>
+            <ul>
+              <li><a href="#">Тех. поддержка</a></li>
+              <li><a href="#">Соглашение</a></li>
+              <li><a href="#">Политика</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>Made with ❤️ for Minecraft community</p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- YOUTUBERS CONFIGS PAGE -->
+    <div id="page-youtubers" class="page">
+      <section class="youtubers-page">
+        <div class="page-header">
+          <h1>Конфиги от топовых YouTubers</h1>
+          <p>
+            Эксклюзивные настройки от лучших создателей контента. Используйте те
+            же конфиги, что и ваши любимые стримеры!
+          </p>
+        </div>
+
+        <div class="products-grid">
+          <div class="youtuber-card">
+            <div class="youtuber-header">
+              <div class="youtuber-avatar">M</div>
+              <div class="youtuber-info">
+                <h3>MaxGaming</h3>
+                <p class="subscribers">2.5M подписчиков</p>
+              </div>
+            </div>
+            <p class="youtuber-description">
+              Профессиональный игрок в Minecraft PvP с 5+ годами опыта. Этот
+              конфиг оптимизирован для максимальной производительности в
+              сражениях и включает все настройки, которые использует сам
+              MaxGaming.
+            </p>
+            <div class="config-features">
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Оптимизация PvP</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Видеоуроки</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Приоритетная поддержка</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Пожизненные обновления</span>
+              </div>
+            </div>
+            <div class="config-price">
+              <div class="price-tag">$149</div>
+              <a href="#" class="btn">Купить конфиг</a>
+            </div>
+          </div>
+
+          <div class="youtuber-card">
+            <div class="youtuber-header">
+              <div class="youtuber-avatar">S</div>
+              <div class="youtuber-info">
+                <h3>StreamQueen</h3>
+                <p class="subscribers">1.8M подписчиков</p>
+              </div>
+            </div>
+            <p class="youtuber-description">
+              Топ стример Minecraft с фокусом на выживание и строительство.
+              Конфиг включает идеальные настройки для стриминга, красивые
+              шейдеры и оптимизацию для записи контента.
+            </p>
+            <div class="config-features">
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Настройки для стрима</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Шейдеры включены</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Личная консультация</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Доступ к дискорду</span>
+              </div>
+            </div>
+            <div class="config-price">
+              <div class="price-tag">$179</div>
+              <a href="#" class="btn">Купить конфиг</a>
+            </div>
+          </div>
+
+          <div class="youtuber-card">
+            <div class="youtuber-header">
+              <div class="youtuber-avatar">T</div>
+              <div class="youtuber-info">
+                <h3>TechMaster</h3>
+                <p class="subscribers">3.2M подписчиков</p>
+              </div>
+            </div>
+            <p class="youtuber-description">
+              Эксперт по техническому Minecraft и редстоуну. Этот конфиг создан
+              для максимальной производительности при работе со сложными
+              механизмами и большими фермами.
+            </p>
+            <div class="config-features">
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Оптимизация ферм</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Редстоун моды</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>VIP поддержка</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Эксклюзивные гайды</span>
+              </div>
+            </div>
+            <div class="config-price">
+              <div class="price-tag">$199</div>
+              <a href="#" class="btn">Купить конфиг</a>
+            </div>
+          </div>
+
+          <div class="youtuber-card">
+            <div class="youtuber-header">
+              <div class="youtuber-avatar">P</div>
+              <div class="youtuber-info">
+                <h3>ProBuilder</h3>
+                <p class="subscribers">1.5M подписчиков</p>
+              </div>
+            </div>
+            <p class="youtuber-description">
+              Известный строитель мега-проектов в Minecraft. Конфиг
+              оптимизирован для работы с большими постройками, включает лучшие
+              моды для строительства и уникальные текстур-паки.
+            </p>
+            <div class="config-features">
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Моды для строительства</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Кастом текстуры</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Шаблоны построек</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Обучающие видео</span>
+              </div>
+            </div>
+            <div class="config-price">
+              <div class="price-tag">$129</div>
+              <a href="#" class="btn">Купить конфиг</a>
+            </div>
+          </div>
+
+          <div class="youtuber-card">
+            <div class="youtuber-header">
+              <div class="youtuber-avatar">R</div>
+              <div class="youtuber-info">
+                <h3>RedstoneKing</h3>
+                <p class="subscribers">2.1M подписчиков</p>
+              </div>
+            </div>
+            <p class="youtuber-description">
+              Легенда редстоуна и автоматизации. Этот конфиг содержит все
+              необходимое для создания самых сложных механизмов, с оптимизацией
+              для минимальной задержки сигналов.
+            </p>
+            <div class="config-features">
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Редстоун утилиты</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Схемы механизмов</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Персональные уроки</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Закрытое комьюнити</span>
+              </div>
+            </div>
+            <div class="config-price">
+              <div class="price-tag">$159</div>
+              <a href="#" class="btn">Купить конфиг</a>
+            </div>
+          </div>
+
+          <div class="youtuber-card">
+            <div class="youtuber-header">
+              <div class="youtuber-avatar">A</div>
+              <div class="youtuber-info">
+                <h3>AdventureAce</h3>
+                <p class="subscribers">1.2M подписчиков</p>
+              </div>
+            </div>
+            <p class="youtuber-description">
+              Специалист по приключениям и выживанию в хардкоре. Конфиг включает
+              оптимизацию для сложных модпаков, улучшенную производительность и
+              настройки для долгих игровых сессий.
+            </p>
+            <div class="config-features">
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Модпаки готовы</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Выживание гайды</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Поддержка 24/7</span>
+              </div>
+              <div class="feature-item">
+                <span class="icon">✓</span>
+                <span>Бонус контент</span>
+              </div>
+            </div>
+            <div class="config-price">
+              <div class="price-tag">$139</div>
+              <a href="#" class="btn">Купить конфиг</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <footer>
+        <div class="footer-content">
+          <div>
+            <div class="footer-logo">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 13h4l3 7 4-18 3 11h4"
+                  stroke="#6366f1"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              PulseVisuals
+            </div>
+            <p style="color: var(--text-muted)">
+              © Pulse 2025-2026. Все права защищены.
+            </p>
+            <div class="social-links">
+              <a href="#">VK</a>
+              <a href="#">TG</a>
+              <a href="#">DC</a>
+            </div>
+          </div>
+          <div>
+            <h4>Навигация</h4>
+            <ul>
+              <li><a href="#home">Главная</a></li>
+              <li><a href="#products">Товары</a></li>
+              <li><a href="#youtubers">Конфиги YouTubers</a></li>
+              <li><a href="#faq">FAQ</a></li>
             </ul>
           </div>
           <div>
@@ -1620,8 +2435,9 @@
     <div id="page-faq" class="page">
       <section class="faq-page">
         <div class="faq-container">
-          <div class="faq-header">
+          <div class="page-header">
             <h1>Часто задаваемые вопросы</h1>
+            <p>Ответы на популярные вопросы о наших продуктах и услугах</p>
           </div>
 
           <div class="faq-item">
@@ -1635,6 +2451,7 @@
                   После завершения покупки вы мгновенно получите доступ к
                   конфигурации по электронной почте. Ссылка для скачивания также
                   будет доступна в вашем профиле в разделе "История покупок".
+                  Все файлы доступны для скачивания без ограничений.
                 </div>
               </div>
             </div>
@@ -1648,8 +2465,8 @@
                 <div class="faq-answer-content">
                   Да! Все конфигурации включают пожизненные обновления без
                   дополнительной платы. Когда создатель выпускает улучшение или
-                  оптимизацию, вы получите автоматическое уведомление и доступ к
-                  последней версии.
+                  оптимизацию, вы получите автоматическое уведомление по email и
+                  сможете скачать последнюю версию в своем профиле.
                 </div>
               </div>
             </div>
@@ -1661,9 +2478,10 @@
               <label for="faq3">Какие способы оплаты вы принимаете?</label>
               <div class="faq-answer">
                 <div class="faq-answer-content">
-                  Мы принимаем все основные кредитные карты, PayPal и
-                  криптовалютные платежи. Все транзакции защищены отраслевым
-                  стандартом шифрования для защиты вашей информации.
+                  Мы принимаем все основные кредитные карты (Visa, MasterCard,
+                  Maestro), PayPal, а также криптовалютные платежи (Bitcoin,
+                  Ethereum, USDT). Все транзакции защищены отраслевым стандартом
+                  SSL шифрования для максимальной безопасности вашей информации.
                 </div>
               </div>
             </div>
@@ -1677,10 +2495,10 @@
               >
               <div class="faq-answer">
                 <div class="faq-answer-content">
-                  Мы предлагаем 30-дневную гарантию возврата денег. Если вы
-                  полностью не удовлетворены своей конфигурацией, свяжитесь с
-                  нашей службой поддержки в течение 30 дней для полного возврата
-                  средств.
+                  Мы предлагаем 30-дневную гарантию возврата денег на все наши
+                  продукты. Если вы полностью не удовлетворены своей
+                  конфигурацией, свяжитесь с нашей службой поддержки в течение
+                  30 дней для полного возврата средств, без лишних вопросов.
                 </div>
               </div>
             </div>
@@ -1694,10 +2512,49 @@
               >
               <div class="faq-answer">
                 <div class="faq-answer-content">
-                  Да! Каждая конфигурация поставляется с подробными
-                  руководствами по установке и видеоуроками. Кроме того, наша
-                  служба поддержки доступна 24/7 по электронной почте и в чате
-                  для помощи с любыми вопросами.
+                  Да! Каждая конфигурация поставляется с подробными пошаговыми
+                  руководствами по установке и видеоуроками на русском языке.
+                  Кроме того, наша служба поддержки доступна 24/7 по электронной
+                  почте, в Telegram и Discord для помощи с любыми вопросами или
+                  проблемами.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <input type="checkbox" id="faq6" />
+              <label for="faq6"
+                >Можно ли использовать на нескольких устройствах?</label
+              >
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  Ваша покупка включает персональную лицензию, которая позволяет
+                  установку на неограниченное количество ваших личных устройств.
+                  Однако распространение или перепродажа конфигураций запрещена.
+                  Для коммерческого использования, пожалуйста, свяжитесь с нами
+                  для получения специальной лицензии.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-question">
+              <input type="checkbox" id="faq7" />
+              <label for="faq7"
+                >В чем разница между обычными товарами и конфигами от
+                YouTubers?</label
+              >
+              <div class="faq-answer">
+                <div class="faq-answer-content">
+                  Конфиги от YouTubers - это эксклюзивные настройки, которые
+                  используют профессиональные создатели контента. Они включают
+                  уникальные оптимизации, персональные модификации и часто
+                  поставляются с дополнительными материалами (видеоуроки,
+                  шаблоны, схемы). Обычные товары - это универсальные
+                  конфигурации, подходящие для широкой аудитории.
                 </div>
               </div>
             </div>
@@ -1737,9 +2594,9 @@
             <h4>Навигация</h4>
             <ul>
               <li><a href="#home">Главная</a></li>
-              <li><a href="#products">Функции</a></li>
-              <li><a href="#tarify">Тарифы</a></li>
-              <li><a href="#faq">Видеообзоры</a></li>
+              <li><a href="#products">Товары</a></li>
+              <li><a href="#youtubers">Конфиги YouTubers</a></li>
+              <li><a href="#faq">FAQ</a></li>
             </ul>
           </div>
           <div>
@@ -1757,43 +2614,6 @@
       </footer>
     </div>
 
-    <!-- LOGIN PAGE -->
-    <div id="page-login" class="page">
-      <section class="login-page">
-        <div class="login-container">
-          <div class="login-content">
-            <h2>
-              Ваш следующий уровень начинается
-              <span class="highlight">здесь</span>
-            </h2>
-            <p>
-              Присоединяйтесь к тысячам игроков, использующих Pulse для
-              максимального игрового комфорта.
-            </p>
-            <div class="login-actions">
-              <a href="#" class="btn">Войти</a>
-              <a href="#profile" class="btn-outline">Регистрация</a>
-            </div>
-          </div>
-          <div class="login-form">
-            <form>
-              <div class="form-group">
-                <label>Email</label>
-                <input type="email" placeholder="your@email.com" />
-              </div>
-              <div class="form-group">
-                <label>Пароль</label>
-                <input type="password" placeholder="••••••••" />
-              </div>
-              <button type="submit" class="btn" style="width: 100%">
-                Войти в аккаунт
-              </button>
-            </form>
-          </div>
-        </div>
-      </section>
-    </div>
-
     <!-- PROFILE PAGE -->
     <div id="page-profile" class="page">
       <section class="profile-page">
@@ -1805,8 +2625,11 @@
               <p>john.doe@email.com</p>
             </div>
             <div class="profile-actions">
-              <a href="#" class="btn">Настройки</a>
-              <a href="#" class="btn-outline">Выйти</a>
+              <a href="#" class="btn btn-small">Настройки</a>
+              <a href="#recovery" class="btn-outline btn-small"
+                >Сменить пароль</a
+              >
+              <a href="#home" class="btn-outline btn-small">Выйти</a>
             </div>
           </aside>
 
@@ -1815,24 +2638,31 @@
               <h3>История покупок</h3>
               <div class="purchase-item">
                 <div class="purchase-details">
-                  <h4>Alpha Config</h4>
-                  <p>Куплено 15 января 2026</p>
+                  <h4>MaxGaming Config</h4>
+                  <p>Куплено 15 января 2026 • Конфиг YouTuber</p>
                 </div>
-                <div class="purchase-price">$49</div>
+                <div class="purchase-price">$149</div>
               </div>
               <div class="purchase-item">
                 <div class="purchase-details">
                   <h4>Gamma Elite</h4>
-                  <p>Куплено 3 декабря 2025</p>
+                  <p>Куплено 3 декабря 2025 • Премиум товар</p>
                 </div>
                 <div class="purchase-price">$129</div>
               </div>
               <div class="purchase-item">
                 <div class="purchase-details">
                   <h4>Beta Bundle</h4>
-                  <p>Куплено 20 ноября 2025</p>
+                  <p>Куплено 20 ноября 2025 • Стандартный товар</p>
                 </div>
                 <div class="purchase-price">$89</div>
+              </div>
+              <div class="purchase-item">
+                <div class="purchase-details">
+                  <h4>StreamQueen Config</h4>
+                  <p>Куплено 10 октября 2025 • Конфиг YouTuber</p>
+                </div>
+                <div class="purchase-price">$179</div>
               </div>
             </section>
 
@@ -1848,14 +2678,14 @@
                   <input type="email" value="john.doe@email.com" />
                 </div>
                 <div class="form-group">
-                  <label>Текущий пароль</label>
-                  <input type="password" placeholder="Введите текущий пароль" />
+                  <label>Discord ID (опционально)</label>
+                  <input type="text" placeholder="username#1234" />
                 </div>
                 <div class="form-group">
-                  <label>Новый пароль</label>
-                  <input type="password" placeholder="Введите новый пароль" />
+                  <label>Telegram (опционально)</label>
+                  <input type="text" placeholder="@username" />
                 </div>
-                <button type="submit" class="btn">Обновить профиль</button>
+                <button type="submit" class="btn">Сохранить изменения</button>
               </form>
             </section>
           </main>
@@ -1894,9 +2724,9 @@
             <h4>Навигация</h4>
             <ul>
               <li><a href="#home">Главная</a></li>
-              <li><a href="#products">Функции</a></li>
-              <li><a href="#tarify">Тарифы</a></li>
-              <li><a href="#faq">Видеообзоры</a></li>
+              <li><a href="#products">Товары</a></li>
+              <li><a href="#youtubers">Конфиги YouTubers</a></li>
+              <li><a href="#faq">FAQ</a></li>
             </ul>
           </div>
           <div>
@@ -1914,25 +2744,50 @@
       </footer>
     </div>
 
+    <!-- PASSWORD RECOVERY PAGE -->
+    <div id="page-recovery" class="page">
+      <section class="recovery-page">
+        <div class="recovery-container">
+          <div class="recovery-icon">🔐</div>
+          <h2>Восстановление пароля</h2>
+          <p>
+            Введите ваш email адрес, и мы отправим вам ссылку для сброса пароля
+          </p>
+          <form>
+            <div class="form-group">
+              <label>Email адрес</label>
+              <input type="email" placeholder="your@email.com" required />
+            </div>
+            <button type="submit" class="btn" style="width: 100%">
+              Отправить ссылку
+            </button>
+          </form>
+          <div class="back-link">
+            <a href="#profile">← Вернуться к профилю</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
     <!-- ADMIN PANEL -->
     <div id="page-admin" class="page">
       <div class="admin-page">
         <aside class="admin-sidebar">
-          <h2>Admin Panel</h2>
+          <h2>Админ Панель</h2>
           <ul class="admin-nav">
             <li><a href="#admin">📊 Dashboard</a></li>
             <li><a href="#admin">📝 Логи</a></li>
             <li><a href="#admin">👥 Пользователи</a></li>
             <li><a href="#admin">🎫 Промокоды</a></li>
-            <li><a href="#admin">🔑 Генератор ключей</a></li>
-            <li><a href="#admin">⬆️ Загрузка обновлений</a></li>
-            <li><a href="#admin">💰 Выплаты</a></li>
+            <li><a href="#admin">🔑 Создание ключей</a></li>
+            <li><a href="#admin">⬆️ Автозагрузка</a></li>
+            <li><a href="#admin">💰 Вывод средств</a></li>
           </ul>
         </aside>
 
         <main class="admin-content">
           <div class="admin-header">
-            <h1>Обзор панели</h1>
+            <h1>Панель управления</h1>
             <p>Добро пожаловать, Администратор</p>
           </div>
 
@@ -1946,15 +2801,16 @@
               <div class="stat">1,892</div>
             </div>
             <div class="stat-card">
-              <h3>Доход (MTD)</h3>
+              <h3>Доход (месяц)</h3>
               <div class="stat">$24.5K</div>
             </div>
             <div class="stat-card">
-              <h3>Открытые заявки</h3>
+              <h3>Ожидающие выплаты</h3>
               <div class="stat">12</div>
             </div>
           </div>
 
+          <!-- Users Table -->
           <div class="admin-table-container">
             <h3>Недавние пользователи</h3>
             <table class="admin-table">
@@ -1963,6 +2819,7 @@
                   <th>ID</th>
                   <th>Email</th>
                   <th>Дата регистрации</th>
+                  <th>Последний вход</th>
                   <th>Статус</th>
                 </tr>
               </thead>
@@ -1971,26 +2828,116 @@
                   <td>#2458</td>
                   <td>user@example.com</td>
                   <td>13 фев, 2026</td>
-                  <td style="color: var(--primary)">Активен</td>
+                  <td>13 фев, 2026 14:23</td>
+                  <td>
+                    <span class="status-badge status-active">Активен</span>
+                  </td>
                 </tr>
                 <tr>
                   <td>#2457</td>
                   <td>admin@example.com</td>
                   <td>12 фев, 2026</td>
-                  <td style="color: var(--primary)">Активен</td>
+                  <td>13 фев, 2026 09:15</td>
+                  <td>
+                    <span class="status-badge status-active">Активен</span>
+                  </td>
                 </tr>
                 <tr>
                   <td>#2456</td>
                   <td>test@example.com</td>
                   <td>11 фев, 2026</td>
-                  <td style="color: var(--text-muted)">Неактивен</td>
+                  <td>11 фев, 2026 22:45</td>
+                  <td>
+                    <span class="status-badge status-inactive">Неактивен</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#2455</td>
+                  <td>player@example.com</td>
+                  <td>10 фев, 2026</td>
+                  <td>13 фев, 2026 11:30</td>
+                  <td>
+                    <span class="status-badge status-active">Активен</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
           </div>
 
+          <!-- Promo Codes -->
           <div class="admin-table-container">
             <h3>Создать промокод</h3>
+            <form
+              style="
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                margin-bottom: 2rem;
+              "
+            >
+              <div class="form-group">
+                <label>Код промокода</label>
+                <input type="text" placeholder="SUMMER2026" />
+              </div>
+              <div class="form-group">
+                <label>Скидка (%)</label>
+                <input type="number" placeholder="25" min="1" max="100" />
+              </div>
+              <div class="form-group">
+                <label>Действителен до</label>
+                <input type="date" />
+              </div>
+              <div class="form-group">
+                <label>Макс. использований</label>
+                <input type="number" placeholder="100" min="1" />
+              </div>
+              <button type="submit" class="btn" style="grid-column: 1 / -1">
+                Создать промокод
+              </button>
+            </form>
+
+            <h3 style="margin-top: 2rem; margin-bottom: 1rem">
+              Активные промокоды
+            </h3>
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Код</th>
+                  <th>Скидка</th>
+                  <th>Использовано</th>
+                  <th>Лимит</th>
+                  <th>Истекает</th>
+                  <th>Статус</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>WINTER25</strong></td>
+                  <td>25%</td>
+                  <td>47</td>
+                  <td>100</td>
+                  <td>28 фев, 2026</td>
+                  <td>
+                    <span class="status-badge status-active">Активен</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td><strong>NEWYEAR</strong></td>
+                  <td>30%</td>
+                  <td>89</td>
+                  <td>100</td>
+                  <td>15 фев, 2026</td>
+                  <td>
+                    <span class="status-badge status-pending">Истекает</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Key Generator -->
+          <div class="admin-table-container">
+            <h3>Генератор ключей</h3>
             <form
               style="
                 display: grid;
@@ -1999,25 +2946,180 @@
               "
             >
               <div class="form-group">
-                <label>Название кода</label>
-                <input type="text" placeholder="SUMMER2026" />
+                <label>Продукт</label>
+                <select>
+                  <option>Alpha Config</option>
+                  <option>Beta Bundle</option>
+                  <option>Gamma Elite</option>
+                  <option>MaxGaming Config</option>
+                  <option>StreamQueen Config</option>
+                </select>
               </div>
               <div class="form-group">
-                <label>Скидка %</label>
-                <input type="number" placeholder="25" />
+                <label>Количество ключей</label>
+                <input type="number" placeholder="10" min="1" max="100" />
               </div>
-              <div class="form-group">
-                <label>Действителен до</label>
-                <input type="date" />
-              </div>
-              <div class="form-group">
-                <label>Макс. использований</label>
-                <input type="number" placeholder="100" />
+              <div class="form-group" style="grid-column: 1 / -1">
+                <label>Срок действия (дней)</label>
+                <input type="number" placeholder="365" min="1" />
               </div>
               <button type="submit" class="btn" style="grid-column: 1 / -1">
-                Создать промокод
+                Сгенерировать ключи
               </button>
             </form>
+          </div>
+
+          <!-- Auto Update -->
+          <div class="admin-table-container">
+            <h3>Автообновление конфигураций</h3>
+            <form>
+              <div class="form-group">
+                <label>Выбрать конфигурацию</label>
+                <select>
+                  <option>Alpha Config</option>
+                  <option>Beta Bundle</option>
+                  <option>Gamma Elite</option>
+                  <option>Delta Pro</option>
+                  <option>MaxGaming Config</option>
+                  <option>StreamQueen Config</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Версия обновления</label>
+                <input type="text" placeholder="v2.1.0" />
+              </div>
+              <div class="form-group">
+                <label>Описание изменений</label>
+                <textarea
+                  placeholder="Список изменений в этом обновлении..."
+                ></textarea>
+              </div>
+              <div class="form-group">
+                <label>Загрузить файл обновления</label>
+                <input type="file" style="padding: 0.75rem" />
+              </div>
+              <button type="submit" class="btn">Загрузить обновление</button>
+            </form>
+          </div>
+
+          <!-- Withdrawals -->
+          <div class="admin-table-container">
+            <h3>Запросы на вывод средств</h3>
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Пользователь</th>
+                  <th>Сумма</th>
+                  <th>Метод</th>
+                  <th>Дата запроса</th>
+                  <th>Статус</th>
+                  <th>Действия</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#0156</td>
+                  <td>maxgaming@pro.com</td>
+                  <td>$450.00</td>
+                  <td>PayPal</td>
+                  <td>12 фев, 2026</td>
+                  <td>
+                    <span class="status-badge status-pending">Ожидает</span>
+                  </td>
+                  <td>
+                    <button
+                      class="btn btn-small"
+                      style="padding: 0.5rem 1rem; margin-right: 0.5rem"
+                    >
+                      Одобрить
+                    </button>
+                    <button
+                      class="btn-outline btn-small"
+                      style="padding: 0.5rem 1rem"
+                    >
+                      Отклонить
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#0155</td>
+                  <td>streamqueen@mail.com</td>
+                  <td>$320.00</td>
+                  <td>Bitcoin</td>
+                  <td>11 фев, 2026</td>
+                  <td>
+                    <span class="status-badge status-active">Выполнено</span>
+                  </td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td>#0154</td>
+                  <td>techmaster@youtube.com</td>
+                  <td>$580.00</td>
+                  <td>PayPal</td>
+                  <td>10 фев, 2026</td>
+                  <td>
+                    <span class="status-badge status-active">Выполнено</span>
+                  </td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Logs -->
+          <div class="admin-table-container">
+            <h3>Последние логи системы</h3>
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Время</th>
+                  <th>Пользователь</th>
+                  <th>Действие</th>
+                  <th>IP адрес</th>
+                  <th>Статус</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>13:45:22</td>
+                  <td>admin@pulse.com</td>
+                  <td>Создан промокод WINTER25</td>
+                  <td>192.168.1.1</td>
+                  <td>
+                    <span class="status-badge status-active">Успешно</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>13:42:15</td>
+                  <td>user@example.com</td>
+                  <td>Покупка: MaxGaming Config</td>
+                  <td>85.140.25.98</td>
+                  <td>
+                    <span class="status-badge status-active">Успешно</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>13:38:09</td>
+                  <td>test@mail.com</td>
+                  <td>Неудачная попытка входа</td>
+                  <td>123.45.67.89</td>
+                  <td>
+                    <span class="status-badge status-inactive">Ошибка</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>13:35:44</td>
+                  <td>admin@pulse.com</td>
+                  <td>Загружено обновление v2.1.0</td>
+                  <td>192.168.1.1</td>
+                  <td>
+                    <span class="status-badge status-active">Успешно</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </main>
       </div>
