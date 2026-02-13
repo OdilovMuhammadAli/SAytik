@@ -171,6 +171,7 @@
       #youtubers:target ~ #page-youtubers,
       #faq:target ~ #page-faq,
       #profile:target ~ #page-profile,
+      #register:target ~ #page-register,
       #recovery:target ~ #page-recovery,
       #admin:target ~ #page-admin {
         display: block;
@@ -185,6 +186,7 @@
       #youtubers:target ~ #page-home,
       #faq:target ~ #page-home,
       #profile:target ~ #page-home,
+      #register:target ~ #page-home,
       #recovery:target ~ #page-home,
       #admin:target ~ #page-home {
         display: none;
@@ -920,6 +922,115 @@
         color: var(--text-secondary);
         margin-bottom: 2rem;
         line-height: 1.7;
+      }
+
+      /* ==================== REGISTER PAGE ==================== */
+      .register-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8rem 2rem 4rem;
+      }
+
+      .register-container {
+        max-width: 600px;
+        width: 100%;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 3rem;
+      }
+
+      .register-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+
+      .register-header .icon {
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-light) 100%
+        );
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2.5rem;
+        margin: 0 auto 1.5rem;
+      }
+
+      .register-header h2 {
+        font-size: 2rem;
+        margin-bottom: 0.75rem;
+      }
+
+      .register-header p {
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+
+      .register-form {
+        margin-bottom: 2rem;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+
+      .checkbox-group {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .checkbox-group input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        margin-top: 2px;
+        cursor: pointer;
+        accent-color: var(--primary);
+      }
+
+      .checkbox-group label {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        line-height: 1.6;
+        cursor: pointer;
+      }
+
+      .checkbox-group label a {
+        color: var(--primary);
+        text-decoration: none;
+        transition: var(--transition);
+      }
+
+      .checkbox-group label a:hover {
+        text-decoration: underline;
+      }
+
+      .register-footer {
+        text-align: center;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+        color: var(--text-secondary);
+      }
+
+      .register-footer a {
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 600;
+        transition: var(--transition);
+      }
+
+      .register-footer a:hover {
+        text-decoration: underline;
       }
 
       .form-group {
@@ -1756,6 +1867,38 @@
           font-size: 0.9rem;
         }
 
+        .register-container {
+          padding: 1.5rem;
+          border-radius: 16px;
+        }
+
+        .register-header .icon {
+          width: 50px;
+          height: 50px;
+          font-size: 1.75rem;
+        }
+
+        .register-header h2 {
+          font-size: 1.5rem;
+        }
+
+        .register-header p {
+          font-size: 0.9rem;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        .checkbox-group {
+          font-size: 0.8rem;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+          width: 18px;
+          height: 18px;
+        }
+
         .form-group label {
           font-size: 0.85rem;
         }
@@ -1870,6 +2013,7 @@
     <span id="youtubers"></span>
     <span id="faq"></span>
     <span id="profile"></span>
+    <span id="register"></span>
     <span id="recovery"></span>
     <span id="admin"></span>
 
@@ -1904,6 +2048,7 @@
           <li><a href="#youtubers">Конфиги YouTubers</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#profile">Профиль</a></li>
+          <li><a href="#register">Регистрация</a></li>
         </ul>
         <div class="nav-actions">
           <a href="#admin" class="icon-btn" title="Админ панель">⚙</a>
@@ -1923,7 +2068,7 @@
           </p>
           <div class="hero-actions">
             <a href="#products" class="btn">Посмотреть товары</a>
-            <a href="#youtubers" class="btn-outline">Конфиги от YouTubers</a>
+            <a href="#register" class="btn-outline">Создать аккаунт</a>
           </div>
         </div>
         <div class="scroll-indicator">
@@ -1974,6 +2119,7 @@
               <li><a href="#youtubers">Конфиги YouTubers</a></li>
               <li><a href="#faq">FAQ</a></li>
               <li><a href="#profile">Профиль</a></li>
+              <li><a href="#register">Регистрация</a></li>
             </ul>
           </div>
           <div>
@@ -2622,7 +2768,14 @@
             <div class="profile-avatar">J</div>
             <div class="profile-info">
               <h2>John Doe</h2>
-              <p>john.doe@email.com</p>
+              <p>
+                <a
+                  href="/cdn-cgi/l/email-protection"
+                  class="__cf_email__"
+                  data-cfemail="9ef4f1f6f0b0faf1fbdefbf3fff7f2b0fdf1f3"
+                  >[email&#160;protected]</a
+                >
+              </p>
             </div>
             <div class="profile-actions">
               <a href="#" class="btn btn-small">Настройки</a>
@@ -2744,6 +2897,94 @@
       </footer>
     </div>
 
+    <!-- REGISTER PAGE -->
+    <div id="page-register" class="page">
+      <section class="register-page">
+        <div class="register-container">
+          <div class="register-header">
+            <div class="icon">👤</div>
+            <h2>Создать аккаунт</h2>
+            <p>Присоединяйтесь к тысячам игроков, использующих PulseVisuals</p>
+          </div>
+
+          <form class="register-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Имя</label>
+                <input type="text" placeholder="Иван" required />
+              </div>
+              <div class="form-group">
+                <label>Фамилия</label>
+                <input type="text" placeholder="Иванов" required />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Email адрес</label>
+              <input type="email" placeholder="your@email.com" required />
+            </div>
+
+            <div class="form-group">
+              <label>Имя пользователя</label>
+              <input type="text" placeholder="username123" required />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Пароль</label>
+                <input
+                  type="password"
+                  placeholder="Минимум 8 символов"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Подтвердите пароль</label>
+                <input
+                  type="password"
+                  placeholder="Повторите пароль"
+                  required
+                />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Discord ID (опционально)</label>
+              <input type="text" placeholder="username#1234" />
+            </div>
+
+            <div class="form-group">
+              <label>Telegram (опционально)</label>
+              <input type="text" placeholder="@username" />
+            </div>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="terms" required />
+              <label for="terms">
+                Я принимаю <a href="#">Пользовательское соглашение</a> и
+                <a href="#">Политику конфиденциальности</a>
+              </label>
+            </div>
+
+            <div class="checkbox-group">
+              <input type="checkbox" id="newsletter" />
+              <label for="newsletter">
+                Получать новости и специальные предложения по email
+              </label>
+            </div>
+
+            <button type="submit" class="btn" style="width: 100%">
+              Создать аккаунт
+            </button>
+          </form>
+
+          <div class="register-footer">
+            Уже есть аккаунт? <a href="#profile">Войти</a>
+          </div>
+        </div>
+      </section>
+    </div>
+
     <!-- PASSWORD RECOVERY PAGE -->
     <div id="page-recovery" class="page">
       <section class="recovery-page">
@@ -2826,7 +3067,14 @@
               <tbody>
                 <tr>
                   <td>#2458</td>
-                  <td>user@example.com</td>
+                  <td>
+                    <a
+                      href="/cdn-cgi/l/email-protection"
+                      class="__cf_email__"
+                      data-cfemail="582d2b3d2a183d20393528343d763b3735"
+                      >[email&#160;protected]</a
+                    >
+                  </td>
                   <td>13 фев, 2026</td>
                   <td>13 фев, 2026 14:23</td>
                   <td>
@@ -2835,7 +3083,14 @@
                 </tr>
                 <tr>
                   <td>#2457</td>
-                  <td>admin@example.com</td>
+                  <td>
+                    <a
+                      href="/cdn-cgi/l/email-protection"
+                      class="__cf_email__"
+                      data-cfemail="6e0f0a0307002e0b160f031e020b400d0103"
+                      >[email&#160;protected]</a
+                    >
+                  </td>
                   <td>12 фев, 2026</td>
                   <td>13 фев, 2026 09:15</td>
                   <td>
@@ -2844,7 +3099,14 @@
                 </tr>
                 <tr>
                   <td>#2456</td>
-                  <td>test@example.com</td>
+                  <td>
+                    <a
+                      href="/cdn-cgi/l/email-protection"
+                      class="__cf_email__"
+                      data-cfemail="97e3f2e4e3d7f2eff6fae7fbf2b9f4f8fa"
+                      >[email&#160;protected]</a
+                    >
+                  </td>
                   <td>11 фев, 2026</td>
                   <td>11 фев, 2026 22:45</td>
                   <td>
@@ -2853,7 +3115,14 @@
                 </tr>
                 <tr>
                   <td>#2455</td>
-                  <td>player@example.com</td>
+                  <td>
+                    <a
+                      href="/cdn-cgi/l/email-protection"
+                      class="__cf_email__"
+                      data-cfemail="51213d30283423113429303c213d347f323e3c"
+                      >[email&#160;protected]</a
+                    >
+                  </td>
                   <td>10 фев, 2026</td>
                   <td>13 фев, 2026 11:30</td>
                   <td>
@@ -3020,7 +3289,14 @@
               <tbody>
                 <tr>
                   <td>#0156</td>
-                  <td>maxgaming@pro.com</td>
+                  <td>
+                    <a
+                      href="/cdn-cgi/l/email-protection"
+                      class="__cf_email__"
+                      data-cfemail="e489859c8385898d8a83a494968bca878b89"
+                      >[email&#160;protected]</a
+                    >
+                  </td>
                   <td>$450.00</td>
                   <td>PayPal</td>
                   <td>12 фев, 2026</td>
@@ -3044,7 +3320,14 @@
                 </tr>
                 <tr>
                   <td>#0155</td>
-                  <td>streamqueen@mail.com</td>
+                  <td>
+                    <a
+                      href="/cdn-cgi/l/email-protection"
+                      class="__cf_email__"
+                      data-cfemail="7a090e081f1b170b0f1f1f143a171b131654191517"
+                      >[email&#160;protected]</a
+                    >
+                  </td>
                   <td>$320.00</td>
                   <td>Bitcoin</td>
                   <td>11 фев, 2026</td>
@@ -3055,7 +3338,14 @@
                 </tr>
                 <tr>
                   <td>#0154</td>
-                  <td>techmaster@youtube.com</td>
+                  <td>
+                    <a
+                      href="/cdn-cgi/l/email-protection"
+                      class="__cf_email__"
+                      data-cfemail="8efaebede6e3effdfaebfccef7e1fbfafbeceba0ede1e3"
+                      >[email&#160;protected]</a
+                    >
+                  </td>
                   <td>$580.00</td>
                   <td>PayPal</td>
                   <td>10 фев, 2026</td>
@@ -3084,7 +3374,14 @@
               <tbody>
                 <tr>
                   <td>13:45:22</td>
-                  <td>admin@pulse.com</td>
+                  <td>
+                    <a
+                      href="/cdn-cgi/l/email-protection"
+                      class="__cf_email__"
+                      data-cfemail="ed8c89808483ad9d98819e88c38e8280"
+                      >[email&#160;protected]</a
+                    >
+                  </td>
                   <td>Создан промокод WINTER25</td>
                   <td>192.168.1.1</td>
                   <td>
@@ -3093,30 +3390,15 @@
                 </tr>
                 <tr>
                   <td>13:42:15</td>
-                  <td>user@example.com</td>
-                  <td>Покупка: MaxGaming Config</td>
-                  <td>85.140.25.98</td>
                   <td>
-                    <span class="status-badge status-active">Успешно</span>
+                    <a
+                      href="/cdn-cgi/l/email-protection"
+                      class="__cf_email__"
+                      data-cfemail="d3a6a0b6a193b6abb2bea3bfb6fdb0bcbe"
+                      >[email&#160;protected]</a
+                    >
                   </td>
-                </tr>
-                <tr>
-                  <td>13:38:09</td>
-                  <td>test@mail.com</td>
-                  <td>Неудачная попытка входа</td>
-                  <td>123.45.67.89</td>
-                  <td>
-                    <span class="status-badge status-inactive">Ошибка</span>
-                  </td>
-                </tr>
-                <tr>
-                  <td>13:35:44</td>
-                  <td>admin@pulse.com</td>
-                  <td>Загружено обновление v2.1.0</td>
-                  <td>192.168.1.1</td>
-                  <td>
-                    <span class="status-badge status-active">Успешно</span>
-                  </td>
+                  <td>Пок�</td>
                 </tr>
               </tbody>
             </table>
