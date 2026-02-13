@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Premium Black & White Website</title>
+    <title>Premium - Лучшие конфигурации для игроков</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Work+Sans:wght@300;400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
     <style>
@@ -17,95 +17,187 @@
       }
 
       :root {
-        --black: #000000;
-        --white: #ffffff;
-        --gray-100: #f5f5f5;
-        --gray-200: #e5e5e5;
-        --gray-300: #d4d4d4;
-        --gray-400: #a3a3a3;
-        --gray-500: #737373;
-        --gray-600: #525252;
-        --gray-700: #404040;
-        --gray-800: #262626;
-        --gray-900: #171717;
+        --primary: #6366f1;
+        --primary-dark: #4f46e5;
+        --primary-light: #818cf8;
+        --bg-dark: #0a0a0f;
+        --bg-darker: #050508;
+        --bg-card: #111116;
+        --text-primary: #ffffff;
+        --text-secondary: #9ca3af;
+        --text-muted: #6b7280;
+        --border: #1f1f28;
         --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       body {
-        font-family: "Work Sans", sans-serif;
-        background: var(--white);
-        color: var(--black);
+        font-family: "Inter", sans-serif;
+        background: var(--bg-dark);
+        color: var(--text-primary);
         line-height: 1.6;
         overflow-x: hidden;
+        position: relative;
       }
 
-      /* ==================== TYPOGRAPHY ==================== */
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-family: "Playfair Display", serif;
-        font-weight: 900;
-        line-height: 1.2;
-        letter-spacing: -0.02em;
+      /* ==================== ANIMATED BACKGROUND ==================== */
+      .animated-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+        background: radial-gradient(
+          ellipse at 50% 50%,
+          #1a1a2e 0%,
+          var(--bg-dark) 50%,
+          var(--bg-darker) 100%
+        );
       }
 
-      h1 {
-        font-size: clamp(2.5rem, 8vw, 6rem);
+      .particle {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: rgba(99, 102, 241, 0.4);
+        border-radius: 50%;
+        animation: float 20s infinite;
+        opacity: 0;
       }
-      h2 {
-        font-size: clamp(2rem, 5vw, 4rem);
+
+      .particle:nth-child(1) {
+        left: 10%;
+        animation-delay: 0s;
+        animation-duration: 15s;
       }
-      h3 {
-        font-size: clamp(1.5rem, 3vw, 2.5rem);
+      .particle:nth-child(2) {
+        left: 20%;
+        animation-delay: 2s;
+        animation-duration: 18s;
       }
-      h4 {
-        font-size: clamp(1.25rem, 2vw, 1.75rem);
+      .particle:nth-child(3) {
+        left: 30%;
+        animation-delay: 4s;
+        animation-duration: 22s;
+      }
+      .particle:nth-child(4) {
+        left: 40%;
+        animation-delay: 6s;
+        animation-duration: 16s;
+      }
+      .particle:nth-child(5) {
+        left: 50%;
+        animation-delay: 1s;
+        animation-duration: 20s;
+      }
+      .particle:nth-child(6) {
+        left: 60%;
+        animation-delay: 3s;
+        animation-duration: 17s;
+      }
+      .particle:nth-child(7) {
+        left: 70%;
+        animation-delay: 5s;
+        animation-duration: 19s;
+      }
+      .particle:nth-child(8) {
+        left: 80%;
+        animation-delay: 7s;
+        animation-duration: 21s;
+      }
+      .particle:nth-child(9) {
+        left: 90%;
+        animation-delay: 8s;
+        animation-duration: 23s;
+      }
+      .particle:nth-child(10) {
+        left: 15%;
+        animation-delay: 9s;
+        animation-duration: 18s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(100vh) scale(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-100vh) scale(1);
+          opacity: 0;
+        }
+      }
+
+      .gradient-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(
+            circle at 20% 30%,
+            rgba(99, 102, 241, 0.15) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(139, 92, 246, 0.1) 0%,
+            transparent 50%
+          );
+        z-index: 1;
+        pointer-events: none;
       }
 
       /* ==================== PAGE NAVIGATION SYSTEM ==================== */
       .page {
         display: none;
         min-height: 100vh;
+        position: relative;
+        z-index: 2;
       }
 
       #home:target ~ #page-home,
       #products:target ~ #page-products,
+      #tarify:target ~ #page-tarify,
       #faq:target ~ #page-faq,
       #profile:target ~ #page-profile,
-      #recovery:target ~ #page-recovery,
       #admin:target ~ #page-admin,
-      #bundles:target ~ #page-bundles {
+      #login:target ~ #page-login {
         display: block;
       }
 
-      /* Default to home page */
       #page-home {
         display: block;
       }
 
       #home:target ~ #page-home,
       #products:target ~ #page-home,
+      #tarify:target ~ #page-home,
       #faq:target ~ #page-home,
       #profile:target ~ #page-home,
-      #recovery:target ~ #page-home,
       #admin:target ~ #page-home,
-      #bundles:target ~ #page-home {
+      #login:target ~ #page-home {
         display: none;
       }
 
-      /* ==================== NAVIGATION BAR ==================== */
+      /* ==================== NAVIGATION ==================== */
       nav {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         z-index: 1000;
-        background: var(--white);
-        border-bottom: 2px solid var(--black);
-        padding: 1.5rem 3rem;
+        background: rgba(10, 10, 15, 0.8);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid var(--border);
+        padding: 1.25rem 4rem;
       }
 
       nav .nav-container {
@@ -116,223 +208,196 @@
         align-items: center;
       }
 
-      nav .logo {
-        font-family: "Playfair Display", serif;
-        font-size: 1.75rem;
-        font-weight: 900;
-        color: var(--black);
-        text-decoration: none;
-        letter-spacing: -0.02em;
-      }
-
-      nav .nav-links {
+      .logo {
         display: flex;
-        gap: 3rem;
-        list-style: none;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: var(--text-primary);
+        text-decoration: none;
       }
 
-      nav .nav-links a {
-        color: var(--black);
+      .logo svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--text-secondary);
         text-decoration: none;
         font-weight: 500;
         font-size: 0.95rem;
-        letter-spacing: 0.02em;
-        text-transform: uppercase;
+        transition: var(--transition);
         position: relative;
+      }
+
+      .nav-links a:hover {
+        color: var(--text-primary);
+      }
+
+      .nav-links a.active {
+        color: var(--text-primary);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .icon-btn {
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text-secondary);
+        cursor: pointer;
         transition: var(--transition);
       }
 
-      nav .nav-links a::after {
-        content: "";
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 0;
-        height: 2px;
-        background: var(--black);
-        transition: var(--transition);
+      .icon-btn:hover {
+        background: var(--bg-card);
+        border-color: var(--primary);
+        color: var(--primary);
       }
 
-      nav .nav-links a:hover::after {
-        width: 100%;
+      .btn-login {
+        padding: 0.75rem 2rem;
+        background: var(--primary);
+        color: var(--text-primary);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.95rem;
+        border-radius: 12px;
+        transition: var(--transition);
+        border: none;
+        cursor: pointer;
+      }
+
+      .btn-login:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
       }
 
       /* ==================== BUTTONS ==================== */
       .btn {
         display: inline-block;
         padding: 1rem 2.5rem;
-        background: var(--black);
-        color: var(--white);
+        background: var(--primary);
+        color: var(--text-primary);
         text-decoration: none;
         font-weight: 600;
         font-size: 0.95rem;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        border: 2px solid var(--black);
+        border-radius: 12px;
+        transition: var(--transition);
+        border: none;
         cursor: pointer;
-        transition: var(--transition);
-        position: relative;
-        overflow: hidden;
-      }
-
-      .btn::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: var(--white);
-        transition: var(--transition);
-        z-index: 0;
-      }
-
-      .btn:hover::before {
-        left: 0;
       }
 
       .btn:hover {
-        color: var(--black);
-      }
-
-      .btn span {
-        position: relative;
-        z-index: 1;
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+        box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
       }
 
       .btn-outline {
-        background: var(--white);
-        color: var(--black);
-      }
-
-      .btn-outline::before {
-        background: var(--black);
+        background: transparent;
+        border: 2px solid var(--border);
+        color: var(--text-secondary);
       }
 
       .btn-outline:hover {
-        color: var(--white);
-      }
-
-      /* ==================== FOOTER ==================== */
-      footer {
-        background: var(--black);
-        color: var(--white);
-        padding: 4rem 3rem 2rem;
-        margin-top: 8rem;
-      }
-
-      footer .footer-content {
-        max-width: 1400px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 3rem;
-        margin-bottom: 3rem;
-      }
-
-      footer h4 {
-        font-size: 1rem;
-        margin-bottom: 1.5rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-      }
-
-      footer .social-links {
-        display: flex;
-        gap: 1.5rem;
-        list-style: none;
-      }
-
-      footer .social-links a {
-        color: var(--white);
-        text-decoration: none;
-        font-size: 1.5rem;
-        transition: var(--transition);
-      }
-
-      footer .social-links a:hover {
-        color: var(--gray-400);
-        transform: translateY(-3px);
-      }
-
-      footer .footer-bottom {
-        text-align: center;
-        padding-top: 2rem;
-        border-top: 1px solid var(--gray-700);
-        color: var(--gray-400);
-        font-size: 0.9rem;
+        background: var(--bg-card);
+        border-color: var(--primary);
+        color: var(--text-primary);
+        box-shadow: none;
       }
 
       /* ==================== HOME PAGE ==================== */
       .hero {
         min-height: 100vh;
         display: flex;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
-        padding: 8rem 3rem 4rem;
-        background: linear-gradient(
-          135deg,
-          var(--white) 0%,
-          var(--gray-100) 100%
-        );
+        padding: 8rem 2rem 4rem;
+        text-align: center;
         position: relative;
-        overflow: hidden;
-      }
-
-      .hero::before {
-        content: "";
-        position: absolute;
-        top: -50%;
-        right: -50%;
-        width: 100%;
-        height: 200%;
-        background: repeating-linear-gradient(
-          45deg,
-          transparent,
-          transparent 10px,
-          var(--gray-200) 10px,
-          var(--gray-200) 11px
-        );
-        opacity: 0.3;
-        animation: slide 20s linear infinite;
-      }
-
-      @keyframes slide {
-        0% {
-          transform: translateX(0) translateY(0);
-        }
-        100% {
-          transform: translateX(-50px) translateY(-50px);
-        }
       }
 
       .hero-content {
-        text-align: center;
         max-width: 900px;
-        position: relative;
-        z-index: 1;
+        animation: fadeInUp 0.8s ease-out;
       }
 
       .hero h1 {
+        font-size: clamp(2.5rem, 6vw, 4.5rem);
+        font-weight: 800;
+        line-height: 1.1;
         margin-bottom: 1.5rem;
-        animation: fadeInUp 0.8s ease-out;
+        background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
 
       .hero p {
         font-size: 1.25rem;
-        color: var(--gray-600);
+        color: var(--text-secondary);
         margin-bottom: 3rem;
-        animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        line-height: 1.8;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
       }
 
-      .hero .btn {
-        animation: fadeInUp 0.8s ease-out 0.4s backwards;
+      .hero-image {
+        width: 100%;
+        max-width: 800px;
+        margin-top: 4rem;
+        animation: fadeInUp 0.8s ease-out 0.3s backwards;
+      }
+
+      .pulse-menu-demo {
+        width: 100%;
+        height: auto;
+        border-radius: 16px;
+        border: 1px solid var(--border);
+        overflow: hidden;
+        background: var(--bg-card);
+      }
+
+      .scroll-indicator {
+        position: absolute;
+        bottom: 3rem;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: bounce 2s infinite;
+      }
+
+      .scroll-indicator svg {
+        width: 32px;
+        height: 32px;
+        color: var(--primary);
       }
 
       @keyframes fadeInUp {
         from {
           opacity: 0;
-          transform: translateY(30px);
+          transform: translateY(40px);
         }
         to {
           opacity: 1;
@@ -340,146 +405,190 @@
         }
       }
 
-      .features {
-        padding: 8rem 3rem;
-        background: var(--white);
+      @keyframes bounce {
+        0%,
+        20%,
+        50%,
+        80%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        40% {
+          transform: translateX(-50%) translateY(-10px);
+        }
+        60% {
+          transform: translateX(-50%) translateY(-5px);
+        }
       }
 
-      .features-container {
-        max-width: 1400px;
+      /* ==================== TARIFY PAGE ==================== */
+      .tarify-page {
+        padding: 8rem 2rem 4rem;
+        min-height: 100vh;
+      }
+
+      .tarify-header {
+        text-align: center;
+        max-width: 700px;
+        margin: 0 auto 5rem;
+      }
+
+      .tarify-header h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 800;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .tarify-header p {
+        font-size: 1.15rem;
+        color: var(--text-secondary);
+        line-height: 1.7;
+      }
+
+      .pricing-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
         margin: 0 auto;
       }
 
-      .features h2 {
-        text-align: center;
-        margin-bottom: 5rem;
-      }
-
-      .features-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 3rem;
-      }
-
-      .feature-card {
+      .pricing-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
         padding: 3rem;
-        border: 2px solid var(--gray-200);
+        text-align: center;
         transition: var(--transition);
         position: relative;
+        overflow: hidden;
       }
 
-      .feature-card::before {
+      .pricing-card::before {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
-        width: 0;
-        height: 100%;
-        background: var(--black);
-        transition: var(--transition);
-        z-index: 0;
-      }
-
-      .feature-card:hover::before {
-        width: 100%;
-      }
-
-      .feature-card:hover {
-        border-color: var(--black);
-        transform: translateY(-5px);
-      }
-
-      .feature-card > * {
-        position: relative;
-        z-index: 1;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--primary) 0%,
+          var(--primary-light) 100%
+        );
+        transform: scaleX(0);
+        transform-origin: left;
         transition: var(--transition);
       }
 
-      .feature-card:hover h3,
-      .feature-card:hover p {
-        color: var(--white);
+      .pricing-card:hover::before {
+        transform: scaleX(1);
       }
 
-      .feature-card h3 {
-        margin-bottom: 1rem;
-        font-size: 1.75rem;
+      .pricing-card:hover {
+        transform: translateY(-10px);
+        border-color: var(--primary);
+        box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
       }
 
-      .feature-card p {
-        color: var(--gray-600);
-        line-height: 1.8;
+      .pricing-logo {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 1.5rem;
+        opacity: 0.6;
+      }
+
+      .pricing-card h3 {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .pricing-card .price {
+        font-size: 1.15rem;
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+      }
+
+      .pricing-card p {
+        color: var(--text-secondary);
+        margin-bottom: 2rem;
+        line-height: 1.7;
       }
 
       /* ==================== PRODUCTS PAGE ==================== */
       .products-page {
-        padding: 8rem 3rem 4rem;
-        background: var(--gray-100);
-      }
-
-      .products-container {
-        max-width: 1400px;
-        margin: 0 auto;
-      }
-
-      .products-page h1 {
-        text-align: center;
-        margin-bottom: 4rem;
+        padding: 8rem 2rem 4rem;
+        min-height: 100vh;
       }
 
       .products-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-        gap: 2.5rem;
+        gap: 2rem;
+        max-width: 1400px;
+        margin: 3rem auto 0;
       }
 
       .product-card {
-        background: var(--white);
-        border: 2px solid var(--black);
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
         overflow: hidden;
         transition: var(--transition);
-        position: relative;
-      }
-
-      .product-card::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.3),
-          transparent
-        );
-        transition: var(--transition);
-      }
-
-      .product-card:hover::after {
-        left: 100%;
       }
 
       .product-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        transform: translateY(-8px);
+        border-color: var(--primary);
+        box-shadow: 0 20px 60px rgba(99, 102, 241, 0.2);
       }
 
       .product-image {
         width: 100%;
-        height: 280px;
-        background: linear-gradient(
-          135deg,
-          var(--gray-900) 0%,
-          var(--gray-700) 100%
-        );
+        height: 220px;
+        background: linear-gradient(135deg, #1e1e2e 0%, #2a2a3e 100%);
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-image::before {
+        content: "";
+        position: absolute;
+        width: 150%;
+        height: 150%;
+        background: radial-gradient(
+          circle,
+          rgba(99, 102, 241, 0.2) 0%,
+          transparent 70%
+        );
+        animation: pulse 3s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.5;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 0.8;
+        }
+      }
+
+      .product-image .icon {
         font-size: 4rem;
-        color: var(--white);
-        font-family: "Playfair Display", serif;
-        border-bottom: 2px solid var(--black);
+        position: relative;
+        z-index: 1;
+        filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.5));
       }
 
       .product-info {
@@ -488,31 +597,27 @@
 
       .product-info h3 {
         font-size: 1.5rem;
+        font-weight: 700;
         margin-bottom: 0.75rem;
       }
 
       .product-info p {
-        color: var(--gray-600);
+        color: var(--text-secondary);
         margin-bottom: 1.5rem;
         line-height: 1.6;
       }
 
       .product-price {
         font-size: 2rem;
-        font-weight: 700;
+        font-weight: 800;
+        color: var(--primary);
         margin-bottom: 1.5rem;
-        font-family: "Playfair Display", serif;
-      }
-
-      .product-info .btn {
-        width: 100%;
-        text-align: center;
       }
 
       /* ==================== FAQ PAGE ==================== */
       .faq-page {
-        padding: 8rem 3rem 4rem;
-        background: var(--white);
+        padding: 8rem 2rem 4rem;
+        min-height: 100vh;
       }
 
       .faq-container {
@@ -520,23 +625,32 @@
         margin: 0 auto;
       }
 
-      .faq-page h1 {
+      .faq-header {
         text-align: center;
         margin-bottom: 4rem;
       }
 
+      .faq-header h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 800;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
       .faq-item {
-        margin-bottom: 1.5rem;
-        border: 2px solid var(--gray-200);
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        overflow: hidden;
         transition: var(--transition);
       }
 
       .faq-item:hover {
-        border-color: var(--black);
-      }
-
-      .faq-question {
-        position: relative;
+        border-color: var(--primary);
       }
 
       .faq-question input[type="checkbox"] {
@@ -546,30 +660,25 @@
       }
 
       .faq-question label {
-        display: block;
-        padding: 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.75rem 2rem;
         font-weight: 600;
-        font-size: 1.15rem;
+        font-size: 1.1rem;
         cursor: pointer;
-        position: relative;
-        padding-right: 4rem;
         transition: var(--transition);
       }
 
       .faq-question label::after {
         content: "+";
-        position: absolute;
-        right: 2rem;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 2rem;
-        line-height: 1;
+        font-size: 1.5rem;
+        color: var(--primary);
         transition: var(--transition);
       }
 
       .faq-question input[type="checkbox"]:checked + label {
-        background: var(--black);
-        color: var(--white);
+        color: var(--primary);
       }
 
       .faq-question input[type="checkbox"]:checked + label::after {
@@ -587,63 +696,146 @@
       }
 
       .faq-answer-content {
-        padding: 2rem;
-        color: var(--gray-600);
+        padding: 0 2rem 2rem;
+        color: var(--text-secondary);
         line-height: 1.8;
-        border-top: 1px solid var(--gray-200);
+      }
+
+      /* ==================== LOGIN PAGE ==================== */
+      .login-page {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8rem 2rem 4rem;
+      }
+
+      .login-container {
+        max-width: 900px;
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+
+      .login-content h2 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+      }
+
+      .login-content h2 .highlight {
+        color: var(--primary);
+      }
+
+      .login-content p {
+        color: var(--text-secondary);
+        font-size: 1.15rem;
+        margin-bottom: 3rem;
+        line-height: 1.7;
+      }
+
+      .login-actions {
+        display: flex;
+        gap: 1rem;
+      }
+
+      .login-form {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 3rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+        color: var(--text-secondary);
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 1rem;
+        background: var(--bg-dark);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text-primary);
+        font-family: "Inter", sans-serif;
+        font-size: 1rem;
+        transition: var(--transition);
+      }
+
+      .form-group input:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
       }
 
       /* ==================== PROFILE PAGE ==================== */
       .profile-page {
-        padding: 8rem 3rem 4rem;
-        background: var(--gray-100);
+        padding: 8rem 2rem 4rem;
+        min-height: 100vh;
       }
 
       .profile-container {
         max-width: 1200px;
         margin: 0 auto;
         display: grid;
-        grid-template-columns: 1fr 2fr;
-        gap: 3rem;
+        grid-template-columns: 300px 1fr;
+        gap: 2rem;
       }
 
       .profile-sidebar {
-        background: var(--white);
-        padding: 3rem;
-        border: 2px solid var(--black);
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 2rem;
         height: fit-content;
       }
 
       .profile-avatar {
-        width: 150px;
-        height: 150px;
-        background: var(--black);
-        color: var(--white);
+        width: 100px;
+        height: 100px;
+        background: linear-gradient(
+          135deg,
+          var(--primary) 0%,
+          var(--primary-light) 100%
+        );
+        border-radius: 50%;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 4rem;
-        font-family: "Playfair Display", serif;
-        margin: 0 auto 2rem;
-        border: 3px solid var(--gray-200);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 0 auto 1.5rem;
+      }
+
+      .profile-info {
+        text-align: center;
+        margin-bottom: 2rem;
       }
 
       .profile-info h2 {
-        font-size: 2rem;
-        text-align: center;
+        font-size: 1.5rem;
         margin-bottom: 0.5rem;
       }
 
       .profile-info p {
-        text-align: center;
-        color: var(--gray-600);
-        margin-bottom: 2rem;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
       }
 
       .profile-actions {
         display: flex;
         flex-direction: column;
-        gap: 1rem;
+        gap: 0.75rem;
       }
 
       .profile-main {
@@ -653,20 +845,24 @@
       }
 
       .profile-section {
-        background: var(--white);
-        padding: 3rem;
-        border: 2px solid var(--black);
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 20px;
+        padding: 2.5rem;
       }
 
       .profile-section h3 {
+        font-size: 1.75rem;
         margin-bottom: 2rem;
         padding-bottom: 1rem;
-        border-bottom: 2px solid var(--gray-200);
+        border-bottom: 1px solid var(--border);
       }
 
       .purchase-item {
         padding: 1.5rem;
-        border: 1px solid var(--gray-200);
+        background: var(--bg-dark);
+        border: 1px solid var(--border);
+        border-radius: 12px;
         margin-bottom: 1rem;
         display: flex;
         justify-content: space-between;
@@ -675,106 +871,24 @@
       }
 
       .purchase-item:hover {
-        border-color: var(--black);
-        background: var(--gray-100);
+        border-color: var(--primary);
+        transform: translateX(5px);
       }
 
       .purchase-details h4 {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
         margin-bottom: 0.5rem;
       }
 
       .purchase-details p {
-        color: var(--gray-600);
+        color: var(--text-secondary);
         font-size: 0.9rem;
       }
 
       .purchase-price {
         font-size: 1.5rem;
         font-weight: 700;
-        font-family: "Playfair Display", serif;
-      }
-
-      /* ==================== PASSWORD RECOVERY PAGE ==================== */
-      .recovery-page {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 8rem 3rem 4rem;
-        background: linear-gradient(
-          135deg,
-          var(--gray-100) 0%,
-          var(--white) 100%
-        );
-      }
-
-      .recovery-form {
-        background: var(--white);
-        padding: 4rem;
-        border: 3px solid var(--black);
-        max-width: 500px;
-        width: 100%;
-        box-shadow: 20px 20px 0 var(--black);
-      }
-
-      .recovery-form h2 {
-        text-align: center;
-        margin-bottom: 1rem;
-      }
-
-      .recovery-form p {
-        text-align: center;
-        color: var(--gray-600);
-        margin-bottom: 3rem;
-      }
-
-      .form-group {
-        margin-bottom: 2rem;
-      }
-
-      .form-group label {
-        display: block;
-        margin-bottom: 0.75rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        font-size: 0.85rem;
-        letter-spacing: 0.05em;
-      }
-
-      .form-group input {
-        width: 100%;
-        padding: 1rem;
-        border: 2px solid var(--gray-300);
-        font-family: "Work Sans", sans-serif;
-        font-size: 1rem;
-        transition: var(--transition);
-        background: var(--white);
-      }
-
-      .form-group input:focus {
-        outline: none;
-        border-color: var(--black);
-      }
-
-      .recovery-form .btn {
-        width: 100%;
-      }
-
-      .recovery-form .back-link {
-        text-align: center;
-        margin-top: 2rem;
-      }
-
-      .recovery-form .back-link a {
-        color: var(--gray-600);
-        text-decoration: none;
-        font-size: 0.9rem;
-        transition: var(--transition);
-      }
-
-      .recovery-form .back-link a:hover {
-        color: var(--black);
+        color: var(--primary);
       }
 
       /* ==================== ADMIN PANEL ==================== */
@@ -786,18 +900,19 @@
 
       .admin-sidebar {
         width: 280px;
-        background: var(--black);
-        color: var(--white);
-        padding: 3rem 0;
+        background: var(--bg-card);
+        border-right: 1px solid var(--border);
+        padding: 2rem 0;
         position: fixed;
         height: 100vh;
         top: 0;
         left: 0;
+        overflow-y: auto;
       }
 
       .admin-sidebar h2 {
         padding: 0 2rem 2rem;
-        border-bottom: 2px solid var(--gray-700);
+        border-bottom: 1px solid var(--border);
         margin-bottom: 2rem;
         font-size: 1.5rem;
       }
@@ -807,25 +922,26 @@
       }
 
       .admin-nav a {
-        display: block;
-        padding: 1.25rem 2rem;
-        color: var(--white);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 1rem 2rem;
+        color: var(--text-secondary);
         text-decoration: none;
         transition: var(--transition);
         border-left: 3px solid transparent;
-        font-weight: 500;
       }
 
       .admin-nav a:hover {
-        background: var(--gray-900);
-        border-left-color: var(--white);
+        background: var(--bg-dark);
+        border-left-color: var(--primary);
+        color: var(--text-primary);
       }
 
       .admin-content {
         margin-left: 280px;
         flex: 1;
         padding: 4rem;
-        background: var(--gray-100);
       }
 
       .admin-header {
@@ -833,55 +949,59 @@
       }
 
       .admin-header h1 {
+        font-size: 2.5rem;
         margin-bottom: 0.5rem;
       }
 
       .admin-header p {
-        color: var(--gray-600);
+        color: var(--text-secondary);
       }
 
-      .admin-grid {
+      .stats-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
         gap: 2rem;
         margin-bottom: 3rem;
       }
 
-      .admin-card {
-        background: var(--white);
-        padding: 2.5rem;
-        border: 2px solid var(--black);
+      .stat-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 2rem;
         transition: var(--transition);
       }
 
-      .admin-card:hover {
+      .stat-card:hover {
+        border-color: var(--primary);
         transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       }
 
-      .admin-card h3 {
-        font-size: 1.5rem;
+      .stat-card h3 {
+        font-size: 1rem;
+        color: var(--text-secondary);
         margin-bottom: 1rem;
+        font-weight: 600;
       }
 
-      .admin-card .stat {
-        font-size: 3rem;
-        font-weight: 900;
-        font-family: "Playfair Display", serif;
-        color: var(--black);
+      .stat-card .stat {
+        font-size: 2.5rem;
+        font-weight: 800;
+        color: var(--primary);
       }
 
       .admin-table-container {
-        background: var(--white);
-        padding: 2.5rem;
-        border: 2px solid var(--black);
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 2rem;
         margin-bottom: 2rem;
+        overflow-x: auto;
       }
 
       .admin-table-container h3 {
+        font-size: 1.5rem;
         margin-bottom: 2rem;
-        padding-bottom: 1rem;
-        border-bottom: 2px solid var(--gray-200);
       }
 
       .admin-table {
@@ -890,22 +1010,20 @@
       }
 
       .admin-table thead {
-        background: var(--black);
-        color: var(--white);
+        border-bottom: 1px solid var(--border);
       }
 
       .admin-table th {
-        padding: 1.25rem;
+        padding: 1rem;
         text-align: left;
         font-weight: 600;
-        text-transform: uppercase;
-        font-size: 0.85rem;
-        letter-spacing: 0.05em;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
       }
 
       .admin-table td {
-        padding: 1.25rem;
-        border-bottom: 1px solid var(--gray-200);
+        padding: 1rem;
+        border-bottom: 1px solid var(--border);
       }
 
       .admin-table tbody tr {
@@ -913,221 +1031,107 @@
       }
 
       .admin-table tbody tr:hover {
-        background: var(--gray-100);
+        background: var(--bg-dark);
       }
 
-      .admin-form {
-        background: var(--white);
-        padding: 2.5rem;
-        border: 2px solid var(--black);
+      /* ==================== FOOTER ==================== */
+      footer {
+        background: var(--bg-darker);
+        border-top: 1px solid var(--border);
+        padding: 4rem 2rem 2rem;
+        margin-top: 8rem;
+        position: relative;
+        z-index: 2;
       }
 
-      .admin-form h3 {
-        margin-bottom: 2rem;
-      }
-
-      .form-row {
+      .footer-content {
+        max-width: 1400px;
+        margin: 0 auto;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 1.5rem;
-        margin-bottom: 1.5rem;
-      }
-
-      /* ==================== YOUTUBER BUNDLES PAGE ==================== */
-      .bundles-page {
-        padding: 8rem 3rem 4rem;
-        background: var(--white);
-      }
-
-      .bundles-hero {
-        text-align: center;
-        max-width: 900px;
-        margin: 0 auto 6rem;
-      }
-
-      .bundles-hero h1 {
-        margin-bottom: 1.5rem;
-      }
-
-      .bundles-hero p {
-        font-size: 1.25rem;
-        color: var(--gray-600);
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 4rem;
         margin-bottom: 3rem;
       }
 
-      .creators-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 3rem;
-        max-width: 1400px;
-        margin: 0 auto 6rem;
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
       }
 
-      .creator-card {
-        background: var(--gray-100);
-        border: 3px solid var(--black);
-        padding: 3rem;
-        text-align: center;
-        position: relative;
-        overflow: hidden;
+      .footer-logo svg {
+        width: 28px;
+        height: 28px;
+      }
+
+      footer h4 {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        color: var(--text-primary);
+      }
+
+      footer ul {
+        list-style: none;
+      }
+
+      footer ul li {
+        margin-bottom: 0.75rem;
+      }
+
+      footer ul li a {
+        color: var(--text-secondary);
+        text-decoration: none;
         transition: var(--transition);
       }
 
-      .creator-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 5px;
-        background: var(--black);
-        transform: scaleX(0);
-        transform-origin: left;
-        transition: var(--transition);
+      footer ul li a:hover {
+        color: var(--primary);
       }
 
-      .creator-card:hover::before {
-        transform: scaleX(1);
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1.5rem;
       }
 
-      .creator-card:hover {
-        transform: translateY(-10px);
-      }
-
-      .creator-avatar {
-        width: 120px;
-        height: 120px;
-        background: var(--black);
-        color: var(--white);
-        border-radius: 50%;
+      .social-links a {
+        width: 40px;
+        height: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 3rem;
-        font-family: "Playfair Display", serif;
-        margin: 0 auto 1.5rem;
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        color: var(--text-secondary);
+        transition: var(--transition);
       }
 
-      .creator-card h3 {
-        margin-bottom: 0.5rem;
+      .social-links a:hover {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: var(--text-primary);
+        transform: translateY(-3px);
       }
 
-      .creator-card p {
-        color: var(--gray-600);
-        margin-bottom: 2rem;
-      }
-
-      .comparison-section {
-        max-width: 1200px;
-        margin: 0 auto 6rem;
-      }
-
-      .comparison-section h2 {
+      .footer-bottom {
         text-align: center;
-        margin-bottom: 4rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border);
+        color: var(--text-muted);
+        font-size: 0.9rem;
       }
 
-      .comparison-table {
-        background: var(--white);
-        border: 3px solid var(--black);
-        overflow: hidden;
-      }
-
-      .comparison-table table {
-        width: 100%;
-        border-collapse: collapse;
-      }
-
-      .comparison-table thead {
-        background: var(--black);
-        color: var(--white);
-      }
-
-      .comparison-table th {
-        padding: 2rem 1.5rem;
-        text-align: left;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-
-      .comparison-table td {
-        padding: 1.5rem;
-        border-bottom: 1px solid var(--gray-200);
-      }
-
-      .comparison-table tbody tr:nth-child(even) {
-        background: var(--gray-100);
-      }
-
-      .testimonials-section {
-        max-width: 1000px;
-        margin: 0 auto 6rem;
-      }
-
-      .testimonials-section h2 {
-        text-align: center;
-        margin-bottom: 4rem;
-      }
-
-      .testimonial {
-        background: var(--gray-100);
-        padding: 3rem;
-        border-left: 5px solid var(--black);
-        margin-bottom: 2rem;
-      }
-
-      .testimonial p {
-        font-size: 1.25rem;
-        font-style: italic;
-        margin-bottom: 1.5rem;
-        line-height: 1.8;
-      }
-
-      .testimonial-author {
-        font-weight: 600;
-        font-size: 1rem;
-      }
-
-      .cta-section {
-        text-align: center;
-        padding: 6rem 3rem;
-        background: var(--black);
-        color: var(--white);
-        margin: 0 -3rem;
-      }
-
-      .cta-section h2 {
-        margin-bottom: 2rem;
-      }
-
-      .cta-section p {
-        font-size: 1.25rem;
-        margin-bottom: 3rem;
-        color: var(--gray-400);
-      }
-
-      .cta-section .btn {
-        background: var(--white);
-        color: var(--black);
-        border-color: var(--white);
-      }
-
-      .cta-section .btn::before {
-        background: var(--black);
-      }
-
-      .cta-section .btn:hover {
-        color: var(--white);
-      }
-
-      /* ==================== RESPONSIVE DESIGN ==================== */
+      /* ==================== RESPONSIVE ==================== */
       @media (max-width: 968px) {
         nav {
-          padding: 1rem 1.5rem;
+          padding: 1rem 2rem;
         }
 
-        nav .nav-links {
+        .nav-links {
           gap: 1.5rem;
         }
 
@@ -1135,11 +1139,10 @@
           padding: 6rem 1.5rem 3rem;
         }
 
-        .features,
+        .tarify-page,
         .products-page,
         .faq-page,
-        .profile-page,
-        .bundles-page {
+        .profile-page {
           padding: 6rem 1.5rem 3rem;
         }
 
@@ -1147,8 +1150,8 @@
           grid-template-columns: 1fr;
         }
 
-        .admin-page {
-          flex-direction: column;
+        .login-container {
+          grid-template-columns: 1fr;
         }
 
         .admin-sidebar {
@@ -1161,60 +1164,85 @@
           margin-left: 0;
         }
 
-        footer {
-          padding: 3rem 1.5rem 1.5rem;
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
         }
       }
 
       @media (max-width: 640px) {
-        nav .nav-links {
+        .nav-links {
           gap: 1rem;
           font-size: 0.85rem;
         }
 
+        .pricing-cards,
+        .products-grid {
+          grid-template-columns: 1fr;
+        }
+
         .btn {
           padding: 0.875rem 2rem;
-          font-size: 0.85rem;
-        }
-
-        .products-grid,
-        .features-grid,
-        .creators-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .recovery-form {
-          padding: 2.5rem;
-        }
-
-        .form-row {
-          grid-template-columns: 1fr;
+          font-size: 0.9rem;
         }
       }
     </style>
   </head>
   <body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+      <div class="particle"></div>
+    </div>
+    <div class="gradient-overlay"></div>
+
     <!-- Navigation Anchors -->
     <span id="home"></span>
     <span id="products"></span>
+    <span id="tarify"></span>
     <span id="faq"></span>
     <span id="profile"></span>
-    <span id="recovery"></span>
     <span id="admin"></span>
-    <span id="bundles"></span>
+    <span id="login"></span>
 
-    <!-- Navigation Bar -->
+    <!-- Navigation -->
     <nav>
       <div class="nav-container">
-        <a href="#home" class="logo">PREMIUM</a>
+        <a href="#home" class="logo">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M3 13h4l3 7 4-18 3 11h4"
+              stroke="#6366f1"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+          PulseVisuals
+        </a>
         <ul class="nav-links">
-          <li><a href="#home">Home</a></li>
-          <li><a href="#products">Products</a></li>
-          <li><a href="#bundles">Bundles</a></li>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#profile">Profile</a></li>
-          <li><a href="#admin">Admin</a></li>
+          <li><a href="#home">Главная</a></li>
+          <li><a href="#products">Функции</a></li>
+          <li><a href="#tarify">Тарифы</a></li>
+          <li><a href="#faq">Видеообзоры</a></li>
         </ul>
+        <div class="nav-actions">
+          <button class="icon-btn">⚙</button>
+          <button class="icon-btn">🌐</button>
+          <a href="#login" class="btn-login">Логин</a>
+        </div>
       </div>
     </nav>
 
@@ -1222,41 +1250,178 @@
     <div id="page-home" class="page">
       <section class="hero">
         <div class="hero-content">
-          <h1>Premium Digital Excellence</h1>
+          <h1>Лучший мод для комфортной игры в Minecraft</h1>
           <p>
-            Experience the finest curated configurations from top creators.
-            Minimalist design meets maximum performance.
+            Pulse создан для тех, кто ценит стиль, удобство и максимальную
+            производительность. Плавный геймплей, продуманный интерфейс и
+            стабильная работа дают вам реальное превосходство в игре.
           </p>
-          <a href="#products" class="btn"><span>Explore Products</span></a>
+          <a href="#products" class="btn">Узнать больше</a>
+        </div>
+        <div class="hero-image">
+          <div
+            class="pulse-menu-demo"
+            style="
+              aspect-ratio: 16/9;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 3rem;
+              color: var(--primary);
+            "
+          >
+            🎮
+          </div>
+        </div>
+        <div class="scroll-indicator">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
         </div>
       </section>
 
-      <section class="features">
-        <div class="features-container">
-          <h2>Why Choose Premium</h2>
-          <div class="features-grid">
-            <div class="feature-card">
-              <h3>Curated Excellence</h3>
-              <p>
-                Every configuration is carefully selected and optimized by
-                industry-leading creators to ensure peak performance and
-                quality.
-              </p>
+      <footer>
+        <div class="footer-content">
+          <div>
+            <div class="footer-logo">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 13h4l3 7 4-18 3 11h4"
+                  stroke="#6366f1"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              PulseVisuals
             </div>
-            <div class="feature-card">
-              <h3>Instant Access</h3>
-              <p>
-                Get immediate access to your purchase with secure delivery. No
-                waiting, no hassle, just pure premium content.
-              </p>
+            <p style="color: var(--text-muted)">
+              © Pulse 2025-2026. Все права защищены.
+            </p>
+            <div class="social-links">
+              <a href="#">VK</a>
+              <a href="#">TG</a>
+              <a href="#">DC</a>
             </div>
-            <div class="feature-card">
-              <h3>Lifetime Updates</h3>
-              <p>
-                Receive continuous updates and improvements. Your investment
-                grows with evolving creator expertise.
-              </p>
+          </div>
+          <div>
+            <h4>Навигация</h4>
+            <ul>
+              <li><a href="#home">Главная</a></li>
+              <li><a href="#products">Функции</a></li>
+              <li><a href="#tarify">Тарифы</a></li>
+              <li><a href="#faq">Видеообзоры</a></li>
+              <li><a href="#login">Войти</a></li>
+              <li><a href="#profile">Регистрация</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4>Поддержка</h4>
+            <ul>
+              <li><a href="#">Тех. поддержка</a></li>
+              <li><a href="#">Соглашение</a></li>
+              <li><a href="#">Политика</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>Made with ❤️ for Minecraft community</p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- TARIFY PAGE -->
+    <div id="page-tarify" class="page">
+      <section class="tarify-page">
+        <div class="tarify-header">
+          <h1>Ваш идеальный тариф здесь</h1>
+          <p>
+            Несколько вариантов подписки, чтобы вы платили только за то, что
+            действительно нужно.
+          </p>
+        </div>
+
+        <div class="pricing-cards">
+          <div class="pricing-card">
+            <div class="pricing-logo">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 13h4l3 7 4-18 3 11h4"
+                  stroke="#6366f1"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
             </div>
+            <h3>30 дней</h3>
+            <p>
+              Приобретая этот товар, вы получаете 30-дневный доступ к полному
+              функционалу PulseVisual.
+            </p>
+            <a href="#" class="btn-outline">Приобрести</a>
+          </div>
+
+          <div class="pricing-card">
+            <div class="pricing-logo">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 13h4l3 7 4-18 3 11h4"
+                  stroke="#6366f1"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <h3>180 дней</h3>
+            <p class="price">🏆</p>
+            <p>
+              Вместе с этим товаром вы открываете себе полгода полного доступа к
+              PulseVisual.
+            </p>
+            <a href="#" class="btn">Приобрести</a>
+          </div>
+
+          <div class="pricing-card">
+            <div class="pricing-logo">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 13h4l3 7 4-18 3 11h4"
+                  stroke="#6366f1"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </div>
+            <h3>Навсегда</h3>
+            <p>
+              Максимум возможностей PulseVisual — навсегда, без продлений и
+              доплат.
+            </p>
+            <a href="#" class="btn-outline">Приобрести</a>
           </div>
         </div>
       </section>
@@ -1264,46 +1429,51 @@
       <footer>
         <div class="footer-content">
           <div>
-            <h4>Premium</h4>
-            <p>Delivering excellence in digital configurations since 2024.</p>
+            <div class="footer-logo">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 13h4l3 7 4-18 3 11h4"
+                  stroke="#6366f1"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              PulseVisuals
+            </div>
+            <p style="color: var(--text-muted)">
+              © Pulse 2025-2026. Все права защищены.
+            </p>
+            <div class="social-links">
+              <a href="#">VK</a>
+              <a href="#">TG</a>
+              <a href="#">DC</a>
+            </div>
           </div>
           <div>
-            <h4>Quick Links</h4>
-            <ul style="list-style: none">
-              <li>
-                <a
-                  href="#products"
-                  style="color: var(--gray-400); text-decoration: none"
-                  >Products</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#faq"
-                  style="color: var(--gray-400); text-decoration: none"
-                  >FAQ</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#profile"
-                  style="color: var(--gray-400); text-decoration: none"
-                  >My Account</a
-                >
-              </li>
+            <h4>Навигация</h4>
+            <ul>
+              <li><a href="#home">Главная</a></li>
+              <li><a href="#products">Функции</a></li>
+              <li><a href="#tarify">Тарифы</a></li>
+              <li><a href="#faq">Видеообзоры</a></li>
             </ul>
           </div>
           <div>
-            <h4>Connect</h4>
-            <ul class="social-links">
-              <li><a href="#">𝕏</a></li>
-              <li><a href="#">⬤</a></li>
-              <li><a href="#">▶</a></li>
+            <h4>Поддержка</h4>
+            <ul>
+              <li><a href="#">Тех. поддержка</a></li>
+              <li><a href="#">Соглашение</a></li>
+              <li><a href="#">Политика</a></li>
             </ul>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2026 Premium. All rights reserved.</p>
+          <p>Made with ❤️ for Minecraft community</p>
         </div>
       </footer>
     </div>
@@ -1311,78 +1481,84 @@
     <!-- PRODUCTS PAGE -->
     <div id="page-products" class="page">
       <section class="products-page">
-        <div class="products-container">
-          <h1>Premium Configurations</h1>
-          <div class="products-grid">
-            <div class="product-card">
-              <div class="product-image">α</div>
-              <div class="product-info">
-                <h3>Alpha Config</h3>
-                <p>
-                  Professional-grade configuration optimized for maximum
-                  performance and efficiency.
-                </p>
-                <div class="product-price">$49</div>
-                <a href="#" class="btn"><span>Buy Now</span></a>
-              </div>
+        <div class="tarify-header">
+          <h1>Премиум конфигурации</h1>
+          <p>Лучшие наборы от топовых создателей контента</p>
+        </div>
+
+        <div class="products-grid">
+          <div class="product-card">
+            <div class="product-image">
+              <div class="icon">⚡</div>
             </div>
-            <div class="product-card">
-              <div class="product-image">β</div>
-              <div class="product-info">
-                <h3>Beta Bundle</h3>
-                <p>
-                  Complete package with advanced features and lifetime support
-                  included.
-                </p>
-                <div class="product-price">$89</div>
-                <a href="#" class="btn"><span>Buy Now</span></a>
-              </div>
+            <div class="product-info">
+              <h3>Alpha Config</h3>
+              <p>
+                Профессиональная конфигурация для максимальной
+                производительности
+              </p>
+              <div class="product-price">$49</div>
+              <a href="#" class="btn">Купить сейчас</a>
             </div>
-            <div class="product-card">
-              <div class="product-image">γ</div>
-              <div class="product-info">
-                <h3>Gamma Elite</h3>
-                <p>
-                  Ultimate configuration with all premium features and priority
-                  updates.
-                </p>
-                <div class="product-price">$129</div>
-                <a href="#" class="btn"><span>Buy Now</span></a>
-              </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">
+              <div class="icon">🔥</div>
             </div>
-            <div class="product-card">
-              <div class="product-image">δ</div>
-              <div class="product-info">
-                <h3>Delta Pro</h3>
-                <p>
-                  Advanced setup designed for content creators and power users.
-                </p>
-                <div class="product-price">$149</div>
-                <a href="#" class="btn"><span>Buy Now</span></a>
-              </div>
+            <div class="product-info">
+              <h3>Beta Bundle</h3>
+              <p>Полный пакет с расширенными функциями</p>
+              <div class="product-price">$89</div>
+              <a href="#" class="btn">Купить сейчас</a>
             </div>
-            <div class="product-card">
-              <div class="product-image">ε</div>
-              <div class="product-info">
-                <h3>Epsilon Master</h3>
-                <p>
-                  Master-level configuration with exclusive optimization
-                  techniques.
-                </p>
-                <div class="product-price">$199</div>
-                <a href="#" class="btn"><span>Buy Now</span></a>
-              </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">
+              <div class="icon">💎</div>
             </div>
-            <div class="product-card">
-              <div class="product-image">ζ</div>
-              <div class="product-info">
-                <h3>Zeta Ultimate</h3>
-                <p>
-                  The pinnacle of configuration excellence with VIP support.
-                </p>
-                <div class="product-price">$299</div>
-                <a href="#" class="btn"><span>Buy Now</span></a>
-              </div>
+            <div class="product-info">
+              <h3>Gamma Elite</h3>
+              <p>Элитный набор со всеми премиум-возможностями</p>
+              <div class="product-price">$129</div>
+              <a href="#" class="btn">Купить сейчас</a>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">
+              <div class="icon">🚀</div>
+            </div>
+            <div class="product-info">
+              <h3>Delta Pro</h3>
+              <p>Продвинутая настройка для контент-мейкеров</p>
+              <div class="product-price">$149</div>
+              <a href="#" class="btn">Купить сейчас</a>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">
+              <div class="icon">⭐</div>
+            </div>
+            <div class="product-info">
+              <h3>Epsilon Master</h3>
+              <p>Мастер-уровень с эксклюзивными техниками</p>
+              <div class="product-price">$199</div>
+              <a href="#" class="btn">Купить сейчас</a>
+            </div>
+          </div>
+
+          <div class="product-card">
+            <div class="product-image">
+              <div class="icon">👑</div>
+            </div>
+            <div class="product-info">
+              <h3>Zeta Ultimate</h3>
+              <p>Вершина совершенства с VIP поддержкой</p>
+              <div class="product-price">$299</div>
+              <a href="#" class="btn">Купить сейчас</a>
             </div>
           </div>
         </div>
@@ -1391,46 +1567,51 @@
       <footer>
         <div class="footer-content">
           <div>
-            <h4>Premium</h4>
-            <p>Delivering excellence in digital configurations since 2024.</p>
+            <div class="footer-logo">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 13h4l3 7 4-18 3 11h4"
+                  stroke="#6366f1"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              PulseVisuals
+            </div>
+            <p style="color: var(--text-muted)">
+              © Pulse 2025-2026. Все права защищены.
+            </p>
+            <div class="social-links">
+              <a href="#">VK</a>
+              <a href="#">TG</a>
+              <a href="#">DC</a>
+            </div>
           </div>
           <div>
-            <h4>Quick Links</h4>
-            <ul style="list-style: none">
-              <li>
-                <a
-                  href="#products"
-                  style="color: var(--gray-400); text-decoration: none"
-                  >Products</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#faq"
-                  style="color: var(--gray-400); text-decoration: none"
-                  >FAQ</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#profile"
-                  style="color: var(--gray-400); text-decoration: none"
-                  >My Account</a
-                >
-              </li>
+            <h4>Навигация</h4>
+            <ul>
+              <li><a href="#home">Главная</a></li>
+              <li><a href="#products">Функции</a></li>
+              <li><a href="#tarify">Тарифы</a></li>
+              <li><a href="#faq">Видеообзоры</a></li>
             </ul>
           </div>
           <div>
-            <h4>Connect</h4>
-            <ul class="social-links">
-              <li><a href="#">𝕏</a></li>
-              <li><a href="#">⬤</a></li>
-              <li><a href="#">▶</a></li>
+            <h4>Поддержка</h4>
+            <ul>
+              <li><a href="#">Тех. поддержка</a></li>
+              <li><a href="#">Соглашение</a></li>
+              <li><a href="#">Политика</a></li>
             </ul>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2026 Premium. All rights reserved.</p>
+          <p>Made with ❤️ for Minecraft community</p>
         </div>
       </footer>
     </div>
@@ -1439,20 +1620,21 @@
     <div id="page-faq" class="page">
       <section class="faq-page">
         <div class="faq-container">
-          <h1>Frequently Asked Questions</h1>
+          <div class="faq-header">
+            <h1>Часто задаваемые вопросы</h1>
+          </div>
 
           <div class="faq-item">
             <div class="faq-question">
               <input type="checkbox" id="faq1" />
               <label for="faq1"
-                >How do I access my purchased configuration?</label
+                >Как получить доступ к купленной конфигурации?</label
               >
               <div class="faq-answer">
                 <div class="faq-answer-content">
-                  After completing your purchase, you'll receive instant access
-                  to your configuration via email. The download link will also
-                  be available in your profile dashboard under "Purchase
-                  History."
+                  После завершения покупки вы мгновенно получите доступ к
+                  конфигурации по электронной почте. Ссылка для скачивания также
+                  будет доступна в вашем профиле в разделе "История покупок".
                 </div>
               </div>
             </div>
@@ -1461,13 +1643,13 @@
           <div class="faq-item">
             <div class="faq-question">
               <input type="checkbox" id="faq2" />
-              <label for="faq2">Are updates included with my purchase?</label>
+              <label for="faq2">Включены ли обновления в покупку?</label>
               <div class="faq-answer">
                 <div class="faq-answer-content">
-                  Yes! All configurations include lifetime updates at no
-                  additional cost. Whenever a creator releases an improvement or
-                  optimization, you'll receive automatic notification and access
-                  to the latest version.
+                  Да! Все конфигурации включают пожизненные обновления без
+                  дополнительной платы. Когда создатель выпускает улучшение или
+                  оптимизацию, вы получите автоматическое уведомление и доступ к
+                  последней версии.
                 </div>
               </div>
             </div>
@@ -1476,12 +1658,12 @@
           <div class="faq-item">
             <div class="faq-question">
               <input type="checkbox" id="faq3" />
-              <label for="faq3">What payment methods do you accept?</label>
+              <label for="faq3">Какие способы оплаты вы принимаете?</label>
               <div class="faq-answer">
                 <div class="faq-answer-content">
-                  We accept all major credit cards, PayPal, and cryptocurrency
-                  payments. All transactions are secured with industry-standard
-                  encryption to protect your information.
+                  Мы принимаем все основные кредитные карты, PayPal и
+                  криптовалютные платежи. Все транзакции защищены отраслевым
+                  стандартом шифрования для защиты вашей информации.
                 </div>
               </div>
             </div>
@@ -1490,13 +1672,15 @@
           <div class="faq-item">
             <div class="faq-question">
               <input type="checkbox" id="faq4" />
-              <label for="faq4">Can I get a refund if I'm not satisfied?</label>
+              <label for="faq4"
+                >Могу ли я получить возврат, если не удовлетворен?</label
+              >
               <div class="faq-answer">
                 <div class="faq-answer-content">
-                  We offer a 30-day money-back guarantee. If you're not
-                  completely satisfied with your configuration, contact our
-                  support team within 30 days for a full refund, no questions
-                  asked.
+                  Мы предлагаем 30-дневную гарантию возврата денег. Если вы
+                  полностью не удовлетворены своей конфигурацией, свяжитесь с
+                  нашей службой поддержки в течение 30 дней для полного возврата
+                  средств.
                 </div>
               </div>
             </div>
@@ -1505,30 +1689,15 @@
           <div class="faq-item">
             <div class="faq-question">
               <input type="checkbox" id="faq5" />
-              <label for="faq5">Do you offer support for installation?</label>
-              <div class="faq-answer">
-                <div class="faq-answer-content">
-                  Yes! Each configuration comes with detailed installation
-                  guides and video tutorials. Additionally, our support team is
-                  available 24/7 via email and live chat to assist with any
-                  questions.
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="faq-item">
-            <div class="faq-question">
-              <input type="checkbox" id="faq6" />
-              <label for="faq6"
-                >Can I use the configuration on multiple devices?</label
+              <label for="faq5"
+                >Предоставляете ли вы поддержку по установке?</label
               >
               <div class="faq-answer">
                 <div class="faq-answer-content">
-                  Your purchase includes a personal license that allows
-                  installation on up to 3 devices. For commercial or multi-user
-                  licenses, please contact our sales team for custom pricing
-                  options.
+                  Да! Каждая конфигурация поставляется с подробными
+                  руководствами по установке и видеоуроками. Кроме того, наша
+                  служба поддержки доступна 24/7 по электронной почте и в чате
+                  для помощи с любыми вопросами.
                 </div>
               </div>
             </div>
@@ -1539,48 +1708,90 @@
       <footer>
         <div class="footer-content">
           <div>
-            <h4>Premium</h4>
-            <p>Delivering excellence in digital configurations since 2024.</p>
+            <div class="footer-logo">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 13h4l3 7 4-18 3 11h4"
+                  stroke="#6366f1"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              PulseVisuals
+            </div>
+            <p style="color: var(--text-muted)">
+              © Pulse 2025-2026. Все права защищены.
+            </p>
+            <div class="social-links">
+              <a href="#">VK</a>
+              <a href="#">TG</a>
+              <a href="#">DC</a>
+            </div>
           </div>
           <div>
-            <h4>Quick Links</h4>
-            <ul style="list-style: none">
-              <li>
-                <a
-                  href="#products"
-                  style="color: var(--gray-400); text-decoration: none"
-                  >Products</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#faq"
-                  style="color: var(--gray-400); text-decoration: none"
-                  >FAQ</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#profile"
-                  style="color: var(--gray-400); text-decoration: none"
-                  >My Account</a
-                >
-              </li>
+            <h4>Навигация</h4>
+            <ul>
+              <li><a href="#home">Главная</a></li>
+              <li><a href="#products">Функции</a></li>
+              <li><a href="#tarify">Тарифы</a></li>
+              <li><a href="#faq">Видеообзоры</a></li>
             </ul>
           </div>
           <div>
-            <h4>Connect</h4>
-            <ul class="social-links">
-              <li><a href="#">𝕏</a></li>
-              <li><a href="#">⬤</a></li>
-              <li><a href="#">▶</a></li>
+            <h4>Поддержка</h4>
+            <ul>
+              <li><a href="#">Тех. поддержка</a></li>
+              <li><a href="#">Соглашение</a></li>
+              <li><a href="#">Политика</a></li>
             </ul>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2026 Premium. All rights reserved.</p>
+          <p>Made with ❤️ for Minecraft community</p>
         </div>
       </footer>
+    </div>
+
+    <!-- LOGIN PAGE -->
+    <div id="page-login" class="page">
+      <section class="login-page">
+        <div class="login-container">
+          <div class="login-content">
+            <h2>
+              Ваш следующий уровень начинается
+              <span class="highlight">здесь</span>
+            </h2>
+            <p>
+              Присоединяйтесь к тысячам игроков, использующих Pulse для
+              максимального игрового комфорта.
+            </p>
+            <div class="login-actions">
+              <a href="#" class="btn">Войти</a>
+              <a href="#profile" class="btn-outline">Регистрация</a>
+            </div>
+          </div>
+          <div class="login-form">
+            <form>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" placeholder="your@email.com" />
+              </div>
+              <div class="form-group">
+                <label>Пароль</label>
+                <input type="password" placeholder="••••••••" />
+              </div>
+              <button type="submit" class="btn" style="width: 100%">
+                Войти в аккаунт
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
     </div>
 
     <!-- PROFILE PAGE -->
@@ -1594,59 +1805,57 @@
               <p>john.doe@email.com</p>
             </div>
             <div class="profile-actions">
-              <a href="#" class="btn"><span>Settings</span></a>
-              <a href="#" class="btn btn-outline"><span>Logout</span></a>
+              <a href="#" class="btn">Настройки</a>
+              <a href="#" class="btn-outline">Выйти</a>
             </div>
           </aside>
 
           <main class="profile-main">
             <section class="profile-section">
-              <h3>Purchase History</h3>
+              <h3>История покупок</h3>
               <div class="purchase-item">
                 <div class="purchase-details">
                   <h4>Alpha Config</h4>
-                  <p>Purchased on January 15, 2026</p>
+                  <p>Куплено 15 января 2026</p>
                 </div>
                 <div class="purchase-price">$49</div>
               </div>
               <div class="purchase-item">
                 <div class="purchase-details">
                   <h4>Gamma Elite</h4>
-                  <p>Purchased on December 3, 2025</p>
+                  <p>Куплено 3 декабря 2025</p>
                 </div>
                 <div class="purchase-price">$129</div>
               </div>
               <div class="purchase-item">
                 <div class="purchase-details">
                   <h4>Beta Bundle</h4>
-                  <p>Purchased on November 20, 2025</p>
+                  <p>Куплено 20 ноября 2025</p>
                 </div>
                 <div class="purchase-price">$89</div>
               </div>
             </section>
 
             <section class="profile-section">
-              <h3>Account Settings</h3>
+              <h3>Настройки аккаунта</h3>
               <form>
                 <div class="form-group">
-                  <label>Full Name</label>
+                  <label>Полное имя</label>
                   <input type="text" value="John Doe" />
                 </div>
                 <div class="form-group">
-                  <label>Email Address</label>
+                  <label>Email адрес</label>
                   <input type="email" value="john.doe@email.com" />
                 </div>
                 <div class="form-group">
-                  <label>Current Password</label>
-                  <input type="password" placeholder="Enter current password" />
+                  <label>Текущий пароль</label>
+                  <input type="password" placeholder="Введите текущий пароль" />
                 </div>
                 <div class="form-group">
-                  <label>New Password</label>
-                  <input type="password" placeholder="Enter new password" />
+                  <label>Новый пароль</label>
+                  <input type="password" placeholder="Введите новый пароль" />
                 </div>
-                <button type="submit" class="btn">
-                  <span>Update Profile</span>
-                </button>
+                <button type="submit" class="btn">Обновить профиль</button>
               </form>
             </section>
           </main>
@@ -1656,71 +1865,53 @@
       <footer>
         <div class="footer-content">
           <div>
-            <h4>Premium</h4>
-            <p>Delivering excellence in digital configurations since 2024.</p>
+            <div class="footer-logo">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 13h4l3 7 4-18 3 11h4"
+                  stroke="#6366f1"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              PulseVisuals
+            </div>
+            <p style="color: var(--text-muted)">
+              © Pulse 2025-2026. Все права защищены.
+            </p>
+            <div class="social-links">
+              <a href="#">VK</a>
+              <a href="#">TG</a>
+              <a href="#">DC</a>
+            </div>
           </div>
           <div>
-            <h4>Quick Links</h4>
-            <ul style="list-style: none">
-              <li>
-                <a
-                  href="#products"
-                  style="color: var(--gray-400); text-decoration: none"
-                  >Products</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#faq"
-                  style="color: var(--gray-400); text-decoration: none"
-                  >FAQ</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#profile"
-                  style="color: var(--gray-400); text-decoration: none"
-                  >My Account</a
-                >
-              </li>
+            <h4>Навигация</h4>
+            <ul>
+              <li><a href="#home">Главная</a></li>
+              <li><a href="#products">Функции</a></li>
+              <li><a href="#tarify">Тарифы</a></li>
+              <li><a href="#faq">Видеообзоры</a></li>
             </ul>
           </div>
           <div>
-            <h4>Connect</h4>
-            <ul class="social-links">
-              <li><a href="#">𝕏</a></li>
-              <li><a href="#">⬤</a></li>
-              <li><a href="#">▶</a></li>
+            <h4>Поддержка</h4>
+            <ul>
+              <li><a href="#">Тех. поддержка</a></li>
+              <li><a href="#">Соглашение</a></li>
+              <li><a href="#">Политика</a></li>
             </ul>
           </div>
         </div>
         <div class="footer-bottom">
-          <p>&copy; 2026 Premium. All rights reserved.</p>
+          <p>Made with ❤️ for Minecraft community</p>
         </div>
       </footer>
-    </div>
-
-    <!-- PASSWORD RECOVERY PAGE -->
-    <div id="page-recovery" class="page">
-      <section class="recovery-page">
-        <form class="recovery-form">
-          <h2>Password Recovery</h2>
-          <p>
-            Enter your email address and we'll send you a link to reset your
-            password.
-          </p>
-          <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" placeholder="Enter your email" />
-          </div>
-          <button type="submit" class="btn">
-            <span>Send Recovery Link</span>
-          </button>
-          <div class="back-link">
-            <a href="#profile">← Back to Login</a>
-          </div>
-        </form>
-      </section>
     </div>
 
     <!-- ADMIN PANEL -->
@@ -1729,302 +1920,107 @@
         <aside class="admin-sidebar">
           <h2>Admin Panel</h2>
           <ul class="admin-nav">
-            <li><a href="#admin">Dashboard</a></li>
-            <li><a href="#admin">Logs</a></li>
-            <li><a href="#admin">Users</a></li>
-            <li><a href="#admin">Promo Codes</a></li>
-            <li><a href="#admin">Key Generator</a></li>
-            <li><a href="#admin">Auto Update Upload</a></li>
-            <li><a href="#admin">Withdrawals</a></li>
+            <li><a href="#admin">📊 Dashboard</a></li>
+            <li><a href="#admin">📝 Логи</a></li>
+            <li><a href="#admin">👥 Пользователи</a></li>
+            <li><a href="#admin">🎫 Промокоды</a></li>
+            <li><a href="#admin">🔑 Генератор ключей</a></li>
+            <li><a href="#admin">⬆️ Загрузка обновлений</a></li>
+            <li><a href="#admin">💰 Выплаты</a></li>
           </ul>
         </aside>
 
         <main class="admin-content">
           <div class="admin-header">
-            <h1>Dashboard Overview</h1>
-            <p>Welcome back, Administrator</p>
+            <h1>Обзор панели</h1>
+            <p>Добро пожаловать, Администратор</p>
           </div>
 
-          <div class="admin-grid">
-            <div class="admin-card">
-              <h3>Total Users</h3>
+          <div class="stats-grid">
+            <div class="stat-card">
+              <h3>Всего пользователей</h3>
               <div class="stat">2,458</div>
             </div>
-            <div class="admin-card">
-              <h3>Active Licenses</h3>
+            <div class="stat-card">
+              <h3>Активные лицензии</h3>
               <div class="stat">1,892</div>
             </div>
-            <div class="admin-card">
-              <h3>Revenue (MTD)</h3>
+            <div class="stat-card">
+              <h3>Доход (MTD)</h3>
               <div class="stat">$24.5K</div>
             </div>
-            <div class="admin-card">
-              <h3>Pending Issues</h3>
+            <div class="stat-card">
+              <h3>Открытые заявки</h3>
               <div class="stat">12</div>
             </div>
           </div>
 
           <div class="admin-table-container">
-            <h3>Recent Users</h3>
+            <h3>Недавние пользователи</h3>
             <table class="admin-table">
               <thead>
                 <tr>
-                  <th>User ID</th>
+                  <th>ID</th>
                   <th>Email</th>
-                  <th>Joined</th>
-                  <th>Status</th>
+                  <th>Дата регистрации</th>
+                  <th>Статус</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>#2458</td>
                   <td>user@example.com</td>
-                  <td>Feb 13, 2026</td>
-                  <td>Active</td>
+                  <td>13 фев, 2026</td>
+                  <td style="color: var(--primary)">Активен</td>
                 </tr>
                 <tr>
                   <td>#2457</td>
                   <td>admin@example.com</td>
-                  <td>Feb 12, 2026</td>
-                  <td>Active</td>
+                  <td>12 фев, 2026</td>
+                  <td style="color: var(--primary)">Активен</td>
                 </tr>
                 <tr>
                   <td>#2456</td>
                   <td>test@example.com</td>
-                  <td>Feb 11, 2026</td>
-                  <td>Inactive</td>
+                  <td>11 фев, 2026</td>
+                  <td style="color: var(--text-muted)">Неактивен</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
-          <div class="admin-form">
-            <h3>Generate Promo Code</h3>
-            <div class="form-row">
+          <div class="admin-table-container">
+            <h3>Создать промокод</h3>
+            <form
+              style="
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+              "
+            >
               <div class="form-group">
-                <label>Code Name</label>
+                <label>Название кода</label>
                 <input type="text" placeholder="SUMMER2026" />
               </div>
               <div class="form-group">
-                <label>Discount %</label>
+                <label>Скидка %</label>
                 <input type="number" placeholder="25" />
               </div>
-            </div>
-            <div class="form-row">
               <div class="form-group">
-                <label>Valid Until</label>
+                <label>Действителен до</label>
                 <input type="date" />
               </div>
               <div class="form-group">
-                <label>Max Uses</label>
+                <label>Макс. использований</label>
                 <input type="number" placeholder="100" />
               </div>
-            </div>
-            <button type="submit" class="btn">
-              <span>Create Promo Code</span>
-            </button>
-          </div>
-
-          <div class="admin-form" style="margin-top: 2rem">
-            <h3>Auto Update Upload</h3>
-            <div class="form-group">
-              <label>Select Configuration</label>
-              <input type="text" placeholder="Select configuration to update" />
-            </div>
-            <div class="form-group">
-              <label>Upload File</label>
-              <input type="file" style="padding: 0.75rem" />
-            </div>
-            <div class="form-group">
-              <label>Version Notes</label>
-              <input
-                type="text"
-                placeholder="Version 2.1.0 - Bug fixes and improvements"
-              />
-            </div>
-            <button type="submit" class="btn">
-              <span>Upload Update</span>
-            </button>
+              <button type="submit" class="btn" style="grid-column: 1 / -1">
+                Создать промокод
+              </button>
+            </form>
           </div>
         </main>
       </div>
-    </div>
-
-    <!-- YOUTUBER BUNDLES PAGE -->
-    <div id="page-bundles" class="page">
-      <section class="bundles-page">
-        <div class="bundles-hero">
-          <h1>Creator Signature Bundles</h1>
-          <p>
-            Get exclusive configurations from the world's top content creators.
-            Each bundle includes their personal setup, optimization tips, and
-            lifetime support.
-          </p>
-          <a href="#products" class="btn"><span>View All Bundles</span></a>
-        </div>
-
-        <div class="creators-grid">
-          <div class="creator-card">
-            <div class="creator-avatar">M</div>
-            <h3>MaxGaming Pro</h3>
-            <p>Professional esports player with 5M+ followers</p>
-            <a href="#" class="btn"><span>View Bundle</span></a>
-          </div>
-          <div class="creator-card">
-            <div class="creator-avatar">S</div>
-            <h3>StreamQueen</h3>
-            <p>Top content creator specializing in streaming setups</p>
-            <a href="#" class="btn"><span>View Bundle</span></a>
-          </div>
-          <div class="creator-card">
-            <div class="creator-avatar">T</div>
-            <h3>TechMaster</h3>
-            <p>Tech reviewer with premium optimization knowledge</p>
-            <a href="#" class="btn"><span>View Bundle</span></a>
-          </div>
-        </div>
-
-        <div class="comparison-section">
-          <h2>Bundle Comparison</h2>
-          <div class="comparison-table">
-            <table>
-              <thead>
-                <tr>
-                  <th>Feature</th>
-                  <th>MaxGaming Pro</th>
-                  <th>StreamQueen</th>
-                  <th>TechMaster</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Configuration Files</td>
-                  <td>15+</td>
-                  <td>20+</td>
-                  <td>25+</td>
-                </tr>
-                <tr>
-                  <td>Video Tutorials</td>
-                  <td>10 hours</td>
-                  <td>15 hours</td>
-                  <td>20 hours</td>
-                </tr>
-                <tr>
-                  <td>Priority Support</td>
-                  <td>✓</td>
-                  <td>✓</td>
-                  <td>✓</td>
-                </tr>
-                <tr>
-                  <td>Lifetime Updates</td>
-                  <td>✓</td>
-                  <td>✓</td>
-                  <td>✓</td>
-                </tr>
-                <tr>
-                  <td>Private Community</td>
-                  <td>✓</td>
-                  <td>✓</td>
-                  <td>✓</td>
-                </tr>
-                <tr>
-                  <td>Price</td>
-                  <td>$149</td>
-                  <td>$179</td>
-                  <td>$199</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="testimonials-section">
-          <h2>What Our Customers Say</h2>
-          <div class="testimonial">
-            <p>
-              "The MaxGaming Pro bundle completely transformed my streaming
-              setup. The configurations are incredibly optimized and I saw
-              immediate improvements in performance."
-            </p>
-            <div class="testimonial-author">
-              — Alex Thompson, Content Creator
-            </div>
-          </div>
-          <div class="testimonial">
-            <p>
-              "StreamQueen's bundle is worth every penny. The attention to
-              detail and the quality of the configurations are unmatched. Highly
-              recommended!"
-            </p>
-            <div class="testimonial-author">
-              — Sarah Martinez, Professional Streamer
-            </div>
-          </div>
-          <div class="testimonial">
-            <p>
-              "TechMaster's configuration saved me weeks of trial and error.
-              Everything just works perfectly out of the box. Best investment
-              I've made this year."
-            </p>
-            <div class="testimonial-author">— David Chen, YouTuber</div>
-          </div>
-        </div>
-
-        <div class="cta-section">
-          <h2>Ready to Elevate Your Setup?</h2>
-          <p>
-            Join thousands of satisfied creators who have optimized their
-            workflow with our premium bundles.
-          </p>
-          <a href="#products" class="btn"><span>Get Started Today</span></a>
-        </div>
-      </section>
-
-      <footer>
-        <div class="footer-content">
-          <div>
-            <h4>Premium</h4>
-            <p>Delivering excellence in digital configurations since 2024.</p>
-          </div>
-          <div>
-            <h4>Quick Links</h4>
-            <ul style="list-style: none">
-              <li>
-                <a
-                  href="#products"
-                  style="color: var(--gray-400); text-decoration: none"
-                  >Products</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#faq"
-                  style="color: var(--gray-400); text-decoration: none"
-                  >FAQ</a
-                >
-              </li>
-              <li>
-                <a
-                  href="#profile"
-                  style="color: var(--gray-400); text-decoration: none"
-                  >My Account</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4>Connect</h4>
-            <ul class="social-links">
-              <li><a href="#">𝕏</a></li>
-              <li><a href="#">⬤</a></li>
-              <li><a href="#">▶</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <p>&copy; 2026 Premium. All rights reserved.</p>
-        </div>
-      </footer>
     </div>
   </body>
 </html>
