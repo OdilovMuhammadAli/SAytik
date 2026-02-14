@@ -487,7 +487,7 @@ nav .nav-container {
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 800;
   margin-bottom: 1rem;
-  background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -518,7 +518,7 @@ nav .nav-container {
 .product-card:hover {
   transform: translateY(-8px);
   border-color: var(--text-primary);
-  box-shadow: 0 20px 60px rgba(255, 0, 0, 0.1);
+  box-shadow: 0 20px 60px rgba(255, 255, 255, 0.1);
 }
 
 .product-image {
@@ -752,14 +752,15 @@ nav .nav-container {
 }
 
 .faq-question label::after {
+  color: var(--text-primary);
   content: "+";
   font-size: 1.5rem;
-  color: var(--primary);
+
   transition: var(--transition);
 }
 
 .faq-question input[type="checkbox"]:checked + label {
-  color: var(--primary);
+  color: var(--text-primary);
 }
 
 .faq-question input[type="checkbox"]:checked + label::after {
@@ -2044,8 +2045,4 @@ footer ul li a:hover {
   height: 550px;
   object-fit: cover;
   display: block;
-}
-
-.image-card:hover {
-  transform: translateY(-8px) scale(1.02);
 }
