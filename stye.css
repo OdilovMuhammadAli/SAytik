@@ -257,6 +257,8 @@ nav .nav-container {
   border-radius: 8px;
   cursor: pointer;
   transition: var(--transition);
+
+  margin-left: auto;
 }
 
 .mobile-menu-btn span {
@@ -308,6 +310,7 @@ nav .nav-container {
   cursor: pointer;
   transition: var(--transition);
   text-decoration: none;
+  margin-left: 12px;
 }
 
 .icon-btn:hover {
