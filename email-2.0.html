@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Вход</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          "Helvetica Neue", Arial, sans-serif;
+        background: #0a0a0f; /* темнее, чем #18181b */
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 40px 20px 60px;
+        color: #ffffff;
+      }
+
+      .container {
+        background: #111116; /* как в первом примере */
+        border-radius: 20px; /* более мягкое скругление */
+        border: 1px solid #2a2a2a;
+        padding: 48px 48px 48px;
+        width: 100%;
+        max-width: 600px; /* шире чем 420 */
+        box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 48px;
+      }
+
+      .header h1 {
+        font-size: 2rem; /* 32px */
+        font-weight: 800;
+        margin-bottom: 0.75rem; /* 12px */
+        color: #ffffff;
+        letter-spacing: 1px; /* чуть больше */
+      }
+
+      .header p {
+        font-size: 0.95rem; /* ~15px */
+        color: #9ca3af; /* светло-серый */
+        line-height: 1.5;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem; /* 24px */
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #9ca3af;
+        font-size: 0.9rem;
+        font-weight: 600;
+      }
+
+      .form-group input {
+        width: 100%;
+        padding: 1rem;
+        background: #0a0a0f; /* темный фон */
+        border: 1px solid #2a2a2a;
+        border-radius: 10px;
+        font-size: 0.95rem;
+        color: #ffffff;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        outline: none;
+      }
+
+      .form-group input:focus {
+        border-color: #ffffff;
+        box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+        background: #111116;
+      }
+
+      .form-group input::placeholder {
+        color: #71717a;
+      }
+
+      .forgot-password {
+        text-align: right;
+        margin-bottom: 2rem;
+      }
+
+      .forgot-password a {
+        font-size: 0.85rem;
+        color: #9ca3af;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .forgot-password a:hover {
+        color: #ffffff;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 1rem;
+        background: #000000;
+        color: #ffffff;
+        font-weight: 700;
+        font-size: 0.95rem;
+        border-radius: 12px;
+        border: 1px solid #ffffff;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        margin-top: 1rem;
+        text-align: center;
+        display: inline-block;
+        text-decoration: none;
+      }
+
+      .submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(255, 255, 255, 0.15);
+      }
+
+      .submit-btn:active {
+        transform: scale(0.98);
+      }
+
+      .divider {
+        text-align: center;
+        margin: 3rem 0;
+        position: relative;
+      }
+
+      .divider::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 1px;
+        background: #2a2a2a;
+        z-index: 0;
+      }
+
+      .divider span {
+        background: #111116;
+        padding: 0 16px;
+        position: relative;
+        color: #71717a;
+        font-size: 0.85rem;
+        z-index: 1;
+      }
+
+      .register-link {
+        text-align: center;
+        font-size: 0.9rem;
+        color: #9ca3af;
+      }
+
+      .register-link a {
+        color: #ffffff;
+        text-decoration: none;
+        font-weight: 600;
+        transition: opacity 0.3s ease;
+      }
+
+      .register-link a:hover {
+        opacity: 0.8;
+      }
+
+      @media (max-width: 520px) {
+        .container {
+          padding: 40px 24px;
+        }
+
+        .header h1 {
+          font-size: 1.75rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h1>Регистрация</h1>
+        <p>Войдите в свой аккаунт</p>
+      </div>
+
+      <form action="/index.html" method="get">
+        <div class="form-group"></div>
+
+        <div class="form-group">
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Введите код из email"
+            required
+          />
+        </div>
+
+        <button type="submit" class="submit-btn">Войти</button>
+      </form>
+
+      <div class="divider"></div>
+    </div>
+  </body>
+</html>
