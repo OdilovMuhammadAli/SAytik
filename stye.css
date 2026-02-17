@@ -1,4 +1,4 @@
-/* ==================== RESET & VARIABLES ==================== */
+
 * {
   margin: 0;
   padding: 0;
@@ -31,7 +31,7 @@ body {
   position: relative;
 }
 
-/* ==================== ANIMATED BACKGROUND ==================== */
+
 .animated-bg {
   position: fixed;
   top: 0;
@@ -147,7 +147,7 @@ body {
   pointer-events: none;
 }
 
-/* ==================== PAGE NAVIGATION SYSTEM ==================== */
+
 .page {
   display: none;
   min-height: 100vh;
@@ -181,7 +181,7 @@ body {
   display: none;
 }
 
-/* ==================== NAVIGATION ==================== */
+
 nav {
   position: fixed;
   top: 0;
@@ -243,7 +243,7 @@ nav .nav-container {
   gap: 1.5rem;
 }
 
-/* ==================== MOBILE MENU ==================== */
+
 .mobile-menu-btn {
   display: none;
   width: 40px;
@@ -338,15 +338,15 @@ nav .nav-container {
   transform: translateY(-3px);
   box-shadow: 0 10px 40px rgba(255, 255, 255, 0.15);
 }
-/* ==================== BUTTONS ==================== */
+
 .btn-kod {
-  display: block; /* чтобы занимала всю ширину */
-  width: 100%; /* растянуть */
-  padding: 1rem 2.5rem; /* меньше высота */
+  display: block; 
+  width: 100%; 
+  padding: 1rem 2.5rem; 
   background: var(--primary);
   color: var(--text-primary);
   font-weight: 600;
-  font-size: 14px; /* немного меньше текст */
+  font-size: 14px; 
   border-radius: 10px;
   transition: var(--transition);
   border: none;
@@ -428,7 +428,6 @@ nav .nav-container {
   font-size: 0.875rem;
 }
 
-/* ==================== HOME PAGE ==================== */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -514,7 +513,7 @@ nav .nav-container {
   }
 }
 
-/* ==================== PRODUCTS PAGE ==================== */
+
 .products-page {
   padding: 8rem 2rem 4rem;
   min-height: 100vh;
@@ -634,7 +633,7 @@ nav .nav-container {
   width: 100%;
 }
 
-/* ==================== YOUTUBERS PAGE ==================== */
+
 .youtubers-page {
   padding: 8rem 2rem 4rem;
   min-height: 100vh;
@@ -753,7 +752,6 @@ nav .nav-container {
   color: var(--primary);
 }
 
-/* ==================== FAQ PAGE ==================== */
 .faq-page {
   padding: 8rem 2rem 4rem;
   min-height: 100vh;
@@ -826,7 +824,7 @@ nav .nav-container {
   line-height: 1.8;
 }
 
-/* ==================== PROFILE PAGE ==================== */
+
 .profile-page {
   padding: 8rem 2rem 4rem;
   min-height: 100vh;
@@ -939,7 +937,7 @@ nav .nav-container {
   color: var(--primary);
 }
 
-/* ==================== RECOVERY PAGE ==================== */
+
 .recovery-page {
   min-height: 100vh;
   display: flex;
@@ -985,7 +983,7 @@ nav .nav-container {
   line-height: 1.7;
 }
 
-/* ==================== REGISTER PAGE ==================== */
+
 .register-page {
   min-height: 100vh;
   display: flex;
@@ -1147,7 +1145,6 @@ nav .nav-container {
   color: var(--primary);
 }
 
-/* ==================== ADMIN PANEL ==================== */
 .admin-page {
   padding-top: 5rem;
   display: flex;
@@ -1313,7 +1310,6 @@ nav .nav-container {
   color: var(--warning);
 }
 
-/* ==================== FOOTER ==================== */
 footer {
   background: var(--bg-darker);
   border-top: 1px solid var(--border);
@@ -1405,7 +1401,6 @@ footer ul li a:hover {
   font-size: 0.9rem;
 }
 
-/* ==================== RESPONSIVE ==================== */
 @media (max-width: 968px) {
   nav {
     padding: 1rem 2rem;
@@ -2055,7 +2050,7 @@ footer ul li a:hover {
   padding: 100px 20px;
 }
 
-/* ZAGоловок */
+
 .section-title {
   font-size: 48px;
   font-weight: 800;
@@ -2070,7 +2065,6 @@ footer ul li a:hover {
   text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
 }
 
-/* CARD */
 .image-card {
   margin: 0 auto;
   width: 100%;
